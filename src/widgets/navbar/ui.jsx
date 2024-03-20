@@ -2,13 +2,13 @@ import React from 'react';
 import logo from '../../../public/assets/givemeLogo.svg';
 import Image from 'next/image';
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <div className="text-white">
       <nav className="bg-black">
         <div className="container  h-20 flex items-center justify-around">
           <div>
-            <Image src={logo}></Image>
+            <Image src={logo} alt="logo"></Image>
           </div>
           <div className="flex gap-8">
             <span>Main</span>
@@ -25,5 +25,3 @@ const Navbar = () => {
     </div>
   );
 };
-
-export default Navbar;

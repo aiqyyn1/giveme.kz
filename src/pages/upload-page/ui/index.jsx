@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from './Card/Card';
+import Card from './card';
 
-const UploadPage = () => {
+export const UploadPage = () => {
   return (
     <div>
       <Card></Card>
@@ -9,4 +9,4 @@ const UploadPage = () => {
   );
 };
 
-export default UploadPage;
+

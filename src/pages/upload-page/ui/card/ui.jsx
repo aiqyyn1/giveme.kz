@@ -1,13 +1,13 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import clothes from '../../../../public/assets/clothes.svg';
-import toys from '../../../../public/assets/toys.svg';
-import shoes from '../../../../public/assets/shoes.svg';
-import addFile from '../../../../public/assets/addFile.svg';
-import deleteLogo from '../../../../public/assets/delete.svg';
+import clothes from '../../../../../public/assets/clothes.svg';
+import toys from '../../../../../public/assets/toys.svg';
+import shoes from '../../../../../public/assets/shoes.svg';
+import addFile from '../../../../../public/assets/addFile.svg';
+import deleteLogo from '../../../../../public/assets/delete.svg';
 import { CARD_TEXT } from './string';
-import SubCard from './SubCard';
+import SubCard from '../subcard/ui';
 
 const data = [
   {
@@ -24,7 +24,7 @@ const data = [
   },
 ];
 
-const Card = () => {
+export const Card = () => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -73,5 +73,3 @@ const Card = () => {
     </div>
   );
 };
-
-export default Card;
