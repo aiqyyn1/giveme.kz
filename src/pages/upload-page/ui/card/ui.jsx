@@ -24,7 +24,7 @@ const data = [
   },
 ];
 
-export const Card = () => {
+const Card = () => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -73,3 +73,4 @@ export const Card = () => {
     </div>
   );
 };
+export default Card;

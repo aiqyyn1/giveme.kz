@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-export const SubCard = ({ text, image }) => {
+const SubCard = ({ text, image }) => {
   return (
     <div className="bg-white w-[328px] h-[191px]">
       <div className="mt-10">
@@ -12,3 +12,4 @@ export const SubCard = ({ text, image }) => {
     </div>
   );
 };
+export default SubCard;

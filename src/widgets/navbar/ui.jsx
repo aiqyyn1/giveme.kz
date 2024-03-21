@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../../public/assets/givemeLogo.svg';
 import Image from 'next/image';
 
-export const Navbar = () => {
+const Navbar = () => {
   return (
     <div className="text-white">
       <nav className="bg-black">
@@ -25,3 +25,4 @@ export const Navbar = () => {
     </div>
   );
 };
+export default Navbar;

@@ -1,12 +1,11 @@
 import React from 'react';
-import Card from './card';
+import {Card}from './index';
 
-export const UploadPage = () => {
+const UploadPage = () => {
   return (
     <div>
       <Card></Card>
     </div>
   );
 };
-
-
+export default UploadPage;
