@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/pages_0/**/*.{js,ts,jsx,tsx,mdx}',
     './src/widgets/**/*.{js,ts,jsx,tsx,mdx}',
     './src/shared/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -15,7 +15,11 @@ module.exports = {
       colors: {
         yellow: '#F5E8A7',
         pink: '#FFF7FF',
-        buttonColor:'#2C2F2F'
+        buttonColor: '#2C2F2F',
+      },
+      fontFamily: {
+        DM: ['DM Sans', 'san-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
     },
   },

@@ -1,83 +1,63 @@
 'use client';
 import React from 'react';
+import { setToken } from '../../lib/slice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Input from '../../../../shared/input/ui/ui';
 import Button from '../../../../shared/button/ui/ui';
 import Image from 'next/image';
-import { usePostRegisterMutation } from '../../api/api';
-import { useSelector } from 'react-redux';
 import logo from '../../../../../public/assets/givemeBlack.svg';
 import Link from 'next/link';
+import { usePostLoginMutation } from '../../api/api';
 
 const Form = () => {
-  const data = useSelector((state) => state.auth);
-  const [postRegister, { isLoading, isError }] = usePostRegisterMutation();
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.token);
+  const [postLogin, { isError, isLoading, data }] = usePostLoginMutation();
 
-  // Define validation schema using Yup
   const validationSchema = Yup.object().shape({
-    Name: Yup.string().required('Name is required'),
-    Surname: Yup.string().required('Surname is required'),
     Email: Yup.string().email('Invalid email').required('Email is required'),
     Password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
       .required('Password is required'),
   });
-
   const formik = useFormik({
-    initialValues: data,
-    validationSchema: validationSchema, // Pass the validation schema to useFormik hook
+    initialValues: {
+      Email: '',
+      Password: '',
+    },
+    validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const response = await postRegister(values);
-        console.log(response);
+        const response = await postLogin(values);
+
+        const accessToken = response.data.access;
+        const refreshToken = response.data.access;
+        dispatch(setToken({ cookieName: 'access', token: accessToken, exprireHours: 1 }));
+        dispatch(setToken({ cookieName: 'refresh', token: refreshToken, exprireHours: 7 }));
       } catch (error) {
         console.log(error);
       }
     },
   });
-
   return (
     <div className="flex justify-center items-center h-screen">
-      <form className="bg-white w-[400px] h-[626.67px] " onSubmit={formik.handleSubmit}>
+      <form className="bg-white w-[377px] h-[540.67px] rounded-lg" onSubmit={formik.handleSubmit}>
         <div className="flex justify-center items-center gap-7 flex-col">
           <div className="mt-4">
             <Image src={logo} alt="logo" />
           </div>
-          <div className="flex gap-16 font-DM text-lg justify-center">
-            <Link href="/login">Войти</Link>
-            <Link href="/register" className="border-b-4 border-black pb-1">
+          <div className="flex gap-10 font-DM text-lg justify-center">
+            <Link href="/login" className="border-b-4 border-black w-40 text-center">
+              Войти
+            </Link>
+            <Link href="/register" className="">
               Зарегистрироваться
             </Link>
           </div>
         </div>
         <div className="ml-5 flex flex-col gap-6 mt-5">
-          <div>
-            <Input
-              placeholder="Name"
-              text="Your name"
-              name="Name"
-              value={formik.values.Name}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.Name && formik.errors.Name ? (
-              <div className="text-red-500">{formik.errors.Name}</div>
-            ) : null}
-          </div>
-          <div>
-            <Input
-              placeholder="Surname"
-              text="Your Surname"
-              name="Surname"
-              value={formik.values.Surname}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.Surname && formik.errors.Surname ? (
-              <div className="text-red-500">{formik.errors.Surname}</div>
-            ) : null}
-          </div>
           <div>
             <Input
               placeholder="Email"
@@ -107,14 +87,17 @@ const Form = () => {
             ) : null}
           </div>
           <div>
-            <Button text="Зарегистрироваться" type="submit" />
+            <Link href="/reset-password" className="font-DM text-xl font-bold">
+              Забыли пароль?
+            </Link>
+          </div>
+          <div>
+            <Button text="Войти" />
           </div>
           <div className="font-inter text-sm">
             <span>
-              I agree to the processing of my data <br /> in{' '}
-              <span className="font-bold">GIVEMEKZ</span>. I confirm that I am of age and
-              <br />
-              responsible for posting items
+              При входе вы соглашаетесь с нашими  <span className="font-bold">Условия </span> <br />{' '}
+              <span className="font-bold">использования</span>
             </span>
           </div>
         </div>
