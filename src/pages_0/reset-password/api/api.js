@@ -7,14 +7,18 @@ export const authReset = createApi({
   }),
   endpoints: (builder) => ({
     postReset: builder.mutation({
-      query: ({ token, ...data }) => ({
-        url: '/user/reset_password',
-        method: 'POST',
-        body: data,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }),
+      query: ({ token, ...data }) => {
+        console.log('Token:', token);
+        console.log('Data:', data);
+        return {
+          url: '/user/reset_password',
+          method: 'POST',
+          body: data,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
     }),
   }),
 });
