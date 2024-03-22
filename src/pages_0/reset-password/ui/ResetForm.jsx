@@ -39,43 +39,48 @@ const ResetForm = () => {
     },
   });
   return (
-    <div className="flex justify-center items-center h-screen ">
-      <form className="bg-white w-[400px] h-[330.67px] rounded-lg " onSubmit={formik.handleSubmit}>
-        <div className="ml-5 flex flex-col gap-6 mt-5">
-          <div>
-            <Input
-              placeholder="Password"
-              text="Password"
-              name="Password"
-              type="Password"
-              value={formik.values.Password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.Password && formik.errors.Password ? (
-              <div className="text-red-500">{formik.errors.Password}</div>
-            ) : null}
+
+      <div className="flex justify-center items-center h-screen ">
+        <form
+          className="bg-white w-[400px] h-[330.67px] rounded-lg "
+          onSubmit={formik.handleSubmit}
+        >
+          <div className="ml-5 flex flex-col gap-6 mt-5">
+            <div>
+              <Input
+                placeholder="Password"
+                text="Password"
+                name="Password"
+                type="Password"
+                value={formik.values.Password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.Password && formik.errors.Password ? (
+                <div className="text-red-500">{formik.errors.Password}</div>
+              ) : null}
+            </div>
+            <div>
+              <Input
+                placeholder="New password"
+                text="New password"
+                name="confirm_password"
+                type="Password"
+                value={formik.values.confirm_password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.confirm_password && formik.errors.confirm_password ? (
+                <div className="text-red-500">{formik.errors.confirm_password}</div>
+              ) : null}
+            </div>
+            <div>
+              <Button text="Отправить" type="submit" />
+            </div>
           </div>
-          <div>
-            <Input
-              placeholder="New password"
-              text="New password"
-              name="confirm_password"
-              type="Password"
-              value={formik.values.confirm_password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.confirm_password && formik.errors.confirm_password ? (
-              <div className="text-red-500">{formik.errors.confirm_password}</div>
-            ) : null}
-          </div>
-          <div>
-            <Button text="Отправить" type="submit" />
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+
   );
 };
 

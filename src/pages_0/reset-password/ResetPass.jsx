@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ResetForm from './ui/ResetForm';
 
 const ResetPass = () => {
   return (
-    <div>
-      <ResetForm></ResetForm>
-    </div>
+    <Suspense>
+      <div>
+        <ResetForm></ResetForm>
+      </div>
+    </Suspense>
   );
 };
 
