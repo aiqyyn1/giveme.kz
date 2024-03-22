@@ -9,11 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ant-design/nextjs-registry": "^1.0.0",
-    "@mantine/core": "^7.6.2",
-    "@mantine/hooks": "^7.6.2",
-    "@reduxjs/toolkit": "^2.2.2",
-    "antd": "^5.15.3",
+
     "classnames": "^2.5.1",
     "formik": "^2.4.5",
     "js-cookie": "^3.0.5",

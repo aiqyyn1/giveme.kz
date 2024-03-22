@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from './ui/Form/Form';
+import Form from './ui/Form/FormForgotPassword';
 
 const Registration = () => {
   return (

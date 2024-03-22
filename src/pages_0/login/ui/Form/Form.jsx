@@ -87,7 +87,7 @@ const Form = () => {
             ) : null}
           </div>
           <div>
-            <Link href="/reset-password" className="font-DM text-xl font-bold">
+            <Link href="/forgot-password" className="font-DM text-xl font-bold">
               Забыли пароль?
             </Link>
           </div>

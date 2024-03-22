@@ -27,7 +27,8 @@
     "src/shared/input/ui/ui.jsx",
     "src/app/StoreProvider.jsx",
     "src/app/store.js",
-    "src/app/register/page.jsx"
+    "src/app/register/page.jsx",
+    "src/pages_0/forget-password/ui/Form/Form.jsx"
   ],
   "exclude": ["node_modules"]
 }

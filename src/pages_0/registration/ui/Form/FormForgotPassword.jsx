@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import logo from '../../../../../public/assets/givemeBlack.svg';
 import Link from 'next/link';
 
-const Form = () => {
+const FormForgotPassword = () => {
   const data = useSelector((state) => state.auth);
   const [postRegister, { isLoading, isError }] = usePostRegisterMutation();
 
@@ -123,4 +123,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default FormForgotPassword;
