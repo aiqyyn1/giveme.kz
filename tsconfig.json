@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -27,9 +23,11 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/shared/ui/input/ui.jsx", "src/app/StoreProvider.jsx", "src/app/store.js", "src/app/register/page.jsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "src/shared/input/ui/ui.jsx",
+    "src/app/StoreProvider.jsx",
+    "src/app/store.js",
+    "src/app/register/page.jsx"
+  ],
+  "exclude": ["node_modules"]
 }
