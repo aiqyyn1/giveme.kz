@@ -6,7 +6,7 @@ import toys from '../../../../../public/assets/toys.svg';
 import shoes from '../../../../../public/assets/shoes.svg';
 import addFile from '../../../../../public/assets/addFile.svg';
 import deleteLogo from '../../../../../public/assets/delete.svg';
-import { CARD_TEXT } from './string';
+import {CARD_TEXT} from './string'
 import SubCard from '../subcard/ui';
 
 const data = [
