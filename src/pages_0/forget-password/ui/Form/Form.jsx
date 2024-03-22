@@ -46,7 +46,7 @@ const Form = () => {
           <span>We will set and send you a new password to your email.</span>
           <div>
             <Input
-              placeholder="Password"
+              placeholder="Email"
               text="Email"
               name="Email"
               type="Email"
@@ -54,8 +54,8 @@ const Form = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.Password && formik.errors.Password ? (
-              <div className="text-red-500">{formik.errors.Password}</div>
+            {formik.touched.Email && formik.errors.Email? (
+              <div className="text-red-500">{formik.errors.Email}</div>
             ) : null}
           </div>
           <div>
