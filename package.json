@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-
+    "@reduxjs/toolkit": "^2.2.2",
     "classnames": "^2.5.1",
     "formik": "^2.4.5",
     "js-cookie": "^3.0.5",

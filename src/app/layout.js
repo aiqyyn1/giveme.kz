@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google';
 
 import './globals.css';
-import { AntdRegistry } from '@ant-design/nextjs-registry';
+
 import StoreProvider from './StoreProvider';
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <StoreProvider>
-          <AntdRegistry>{children}</AntdRegistry>
+        {children}
         </StoreProvider>
       </body>
     </html>
