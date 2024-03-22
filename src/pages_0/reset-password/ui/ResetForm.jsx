@@ -62,12 +62,12 @@ const ResetForm = () => {
               text="New password"
               name="Confirm_password"
               type="Password"
-              value={formik.values.confirm_password}
+              value={formik.values.Confirm_password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.confirm_password && formik.errors.confirm_password ? (
-              <div className="text-red-500">{formik.errors.confirm_password}</div>
+            {formik.touched.Confirm_password && formik.errors.Confirm_password ? (
+              <div className="text-red-500">{formik.errors.Confirm_password}</div>
             ) : null}
           </div>
           <div>

@@ -15,7 +15,7 @@ export const authReset = createApi({
           method: 'POST',
           body: data,
           headers: {
-            Authorization: `Bearer ${token}`,
+            token: token,
           },
         };
       },
