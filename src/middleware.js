@@ -1,12 +1,37 @@
 import { NextResponse } from 'next/server';
+async function getUserRoleFromSessionToken(sessionToken) {
+  try {
+    const response = await fetch('https://giveme-backend-2.onrender.com/user/me', {
+      headers: {
+        Authorization: `Bearer ${sessionToken}`, // Fixed typo here
+      },
+    });
+    const data = await response.json();
 
-export function middleware(request) {
-  const isLogged = request.cookies.get('access');
-  if (isLogged) {
-    return NextResponse.next();
+    return data.role;
+  } catch (error) {
+    console.error('Failed to get user role', error);
+    return null; // Handle error appropriately in real scenarios
   }
-  return NextResponse.redirect(new URL('/login', request.url));
+}
+export async function middleware(request) {
+  const { pathname } = request.nextUrl;
+
+  // Check if the user is trying to access an admin page and is not an admin
+  if (pathname.startsWith('/admin')) {
+    const sessionToken = request.cookies.get('access').value; 
+
+    if (!sessionToken) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+    const userRole = await getUserRoleFromSessionToken(sessionToken);
+    console.log(userRole);
+    if (userRole !== 'ADMIN') {
+      return NextResponse.redirect(new URL('/restrictions', request.url));
+    }
+  }
+  return NextResponse.next();
 }
 export const config = {
-  matcher: ['/upload'],
+  matches: ['/register'],
 };
