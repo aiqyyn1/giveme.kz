@@ -1,32 +1,22 @@
 'use client';
 import React from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+
 import Input from '../../../../shared/input/ui/ui';
 import Button from '../../../../shared/button/ui/ui';
 import Image from 'next/image';
 import { usePostRegisterMutation } from '../../api/api';
 import { useSelector } from 'react-redux';
+import { validationSchema } from '../../lib/validation';
 import logo from '../../../../../public/assets/givemeBlack.svg';
 import Link from 'next/link';
 
 const FormForgotPassword = () => {
   const data = useSelector((state) => state.auth);
   const [postRegister, { isLoading, isError }] = usePostRegisterMutation();
-
-  // Define validation schema using Yup
-  const validationSchema = Yup.object().shape({
-    Name: Yup.string().required('Name is required'),
-    Surname: Yup.string().required('Surname is required'),
-    Email: Yup.string().email('Invalid email').required('Email is required'),
-    Password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('Password is required'),
-  });
-
   const formik = useFormik({
     initialValues: data,
-    validationSchema: validationSchema, // Pass the validation schema to useFormik hook
+    validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
         const response = await postRegister(values);

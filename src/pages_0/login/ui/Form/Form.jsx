@@ -3,7 +3,7 @@ import React from 'react';
 import { setToken } from '../../lib/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import {validationSchema} from '../../lib/validation'
 import Input from '../../../../shared/input/ui/ui';
 import Button from '../../../../shared/button/ui/ui';
 import Image from 'next/image';
@@ -16,12 +16,8 @@ const Form = () => {
   const state = useSelector((state) => state.token);
   const [postLogin, { isError, isLoading, data }] = usePostLoginMutation();
 
-  const validationSchema = Yup.object().shape({
-    Email: Yup.string().email('Invalid email').required('Email is required'),
-    Password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('Password is required'),
-  });
+ 
+
   const formik = useFormik({
     initialValues: {
       Email: '',

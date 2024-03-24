@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import {validationSchema} from '../../lib/validation'
 import Input from '../../../../shared/input/ui/ui';
 import Button from '../../../../shared/button/ui/ui';
 import Image from 'next/image';
@@ -10,9 +10,7 @@ import Link from 'next/link';
 import { usePostForgotMutation } from '../../api/api';
 const Form = () => {
   const [postForgot, { isLoading, isError }] = usePostForgotMutation();
-  const validationSchema = Yup.object().shape({
-    Email: Yup.string().email('Invalid email').required('Email is required'),
-  });
+
 
   const formik = useFormik({
     initialValues: { Email: '' },
