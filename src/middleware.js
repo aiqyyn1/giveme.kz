@@ -3,7 +3,7 @@ async function getUserRoleFromSessionToken(sessionToken) {
   try {
     const response = await fetch('https://giveme-backend-2.onrender.com/user/me', {
       headers: {
-        Authorization: `Bearer ${sessionToken}`, // Fixed typo here
+        Authorization: `Bearer ${sessionToken}`,
       },
     });
     const data = await response.json();
@@ -11,13 +11,11 @@ async function getUserRoleFromSessionToken(sessionToken) {
     return data.role;
   } catch (error) {
     console.error('Failed to get user role', error);
-    return null; // Handle error appropriately in real scenarios
+    return null; 
   }
 }
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
-
-  // Check if the user is trying to access an admin page and is not an admin
   if (pathname.startsWith('/admin')) {
     const sessionToken = request.cookies.get('access').value; 
 
