@@ -41,7 +41,7 @@ const FormForgotPassword = () => {
     <div className="flex justify-center items-center h-screen">
       <form className="bg-white w-[400px] h-[626.67px] " onSubmit={formik.handleSubmit}>
         <div className="flex justify-center items-center gap-7 flex-col">
-          <div className="mt-4">
+          <div className="mt-10">
             <Image src={logo} alt="logo" />
           </div>
           <div className="flex gap-16 font-DM text-lg justify-center">

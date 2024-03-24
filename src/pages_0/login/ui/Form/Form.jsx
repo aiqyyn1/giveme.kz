@@ -45,7 +45,7 @@ const Form = () => {
     <div className="flex justify-center items-center h-screen">
       <form className="bg-white w-[377px] h-[540.67px] rounded-lg" onSubmit={formik.handleSubmit}>
         <div className="flex justify-center items-center gap-7 flex-col">
-          <div className="mt-4">
+          <div className="mt-10">
             <Image src={logo} alt="logo" />
           </div>
           <div className="flex gap-10 font-DM text-lg justify-center">
@@ -87,7 +87,7 @@ const Form = () => {
             ) : null}
           </div>
           <div>
-            <Link href="/forgot-password" className="font-DM text-xl font-bold">
+            <Link href="/forgot-password" className="text-xl font-bold">
               Забыли пароль?
             </Link>
           </div>
