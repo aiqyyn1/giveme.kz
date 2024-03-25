@@ -79,7 +79,7 @@ function Items() {
                     <span>{item.cat_name}</span>
                   </div>
                   <div className="flex justify-center mt-5 ">
-                    <button className="bg-buttonPink w-[228px] h-[48px] rounded-lg">RECIEVE</button>
+                    <button className="bg-buttonPink w-[228px] h-[48px] rounded-lg text-white">RECIEVE</button>
                   </div>
                 </div>
               );
