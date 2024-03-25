@@ -1,22 +1,24 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategories } from '../lib/slice';
 import { useGetItemsQuery } from '../api/api';
-
+import classNames from 'classnames';
 function Items() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const [isClicked, setIsClicked] = useState(false);
   const state = useSelector((state) => state.categories.categories);
-
+  const buttonCoolor = classNames();
   const { data: itemsData, isFetching } = useGetItemsQuery(state, {
     skipPollingIfUnfocused: true,
   });
 
   const handleCategoryClick = (category) => {
+    setIsClicked(true);
     dispatch(setCategories(category));
   };
 
@@ -24,7 +26,18 @@ function Items() {
     const queryParams = state.map((cat) => `cat=${cat}`).join('&');
     router.push(`/items${queryParams ? `?${queryParams}` : ''}`);
   }, [state]);
-
+  const buttonClasses = classNames(
+    'border-2',
+    'h-8',
+    'rounded-lg',
+    'border-buttonColor',
+    'flex-grow',
+    {
+      'bg-buttonColor': isClicked,
+      'text-white': isClicked,
+    }
+  );
+  console.log(itemsData);
   return (
     <div>
       <div className="flex flex-col ml-36 mt-20 gap-4">
@@ -32,12 +45,7 @@ function Items() {
         <span className="text-xl font-DM">Attention! You can take one item per 48 hours</span>
         <div className="flex w-[280px] gap-2 text-center ">
           {' '}
-          {/* Add flex-wrap to allow links to wrap */}
-          <Link
-            href="#"
-            onClick={() => handleCategoryClick('toys')}
-            className="border-2 h-8 rounded-lg border-buttonColor flex-grow"
-          >
+          <Link href="#" onClick={() => handleCategoryClick('toys')} className={buttonClasses}>
             Toys
           </Link>{' '}
           <Link
@@ -55,15 +63,28 @@ function Items() {
             Shoes
           </Link>{' '}
         </div>
-        {/* {itemsData &&
-          itemsData.map((item, index) => {
-            return (
-              <div key={index}>
-                <Image src={item.image} width={20} height={20} alt="alt"></Image>
-              </div>
-            );
-          })} */}
-        <Image src={itemsData && itemsData[0].image} width={20} height={20} alt="dew"></Image>
+        <div className="grid grid-cols-4 gap-8 ">
+          {itemsData &&
+            itemsData.map((item, index) => {
+              return (
+                <div key={index} className="bg-white w-[245px] h-[400px]">
+                  <Image
+                    src={item.image}
+                    width={228}
+                    height={228}
+                    alt="alt"
+                    className="ml-2 mt-2"
+                  ></Image>
+                  <div className="flex justify-center font-inter font-bold mt-6">
+                    <span>{item.cat_name}</span>
+                  </div>
+                  <div className="flex justify-center mt-5 ">
+                    <button className="bg-buttonPink w-[228px] h-[48px] rounded-lg">RECIEVE</button>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );
