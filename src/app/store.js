@@ -7,6 +7,7 @@ import { authApiLogin } from '../pages_0/login/api/api';
 import { authForgot } from '../pages_0/forget-password/api/api';
 import { authReset } from '../pages_0/reset-password/api/api';
 import { itemsAPI } from '../features/items/api/api';
+import { orderApi } from '../entities/order/api/api';
 export const makeStore = () => {
   return configureStore({
     reducer: {
@@ -18,6 +19,7 @@ export const makeStore = () => {
       [authReset.reducerPath]: authReset.reducer,
       categories: categories,
       [itemsAPI.reducerPath]: itemsAPI.reducer,
+      [orderApi.reducerPath]: orderApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
@@ -25,7 +27,8 @@ export const makeStore = () => {
         authApiLogin.middleware,
         authForgot.middleware,
         authReset.middleware,
-        itemsAPI.middleware
+        itemsAPI.middleware,
+        orderApi.middleware
       ),
   });
 };

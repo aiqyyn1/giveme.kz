@@ -3,7 +3,7 @@ import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react';
 export const itemsAPI = createApi({
   reducerPath: 'itemsAPI',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://giveme-backend-2.onrender.com/',
+    baseUrl: process.env.baseURL,
   }),
   endpoints: (builder) => ({
     getItems: builder.query({

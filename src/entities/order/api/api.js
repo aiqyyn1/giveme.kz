@@ -1,18 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const authApiLogin = createApi({
-  reducerPath: 'authApiLogin',
+export const orderApi= createApi({
+  reducerPath: 'orderApi',
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.baseURL,
   }),
   endpoints: (builder) => ({
-    postLogin: builder.mutation({
+    postOrder: builder.mutation({
       query: (data) => ({
-        url: '/user/login',
+        url: '/order/create',
         method: 'POST',
         body: data,
       }),
     }),
   }),
 });
-export const { usePostLoginMutation } = authApiLogin;
+export const { usePostOrderMutation} = orderApi;

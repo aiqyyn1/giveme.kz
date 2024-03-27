@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useFormik } from 'formik';
-import {validationSchema} from '../../lib/validation'
+import { validationSchema } from '../../lib/validation';
 import Input from '../../../../shared/input/ui/ui';
 import Button from '../../../../shared/button/ui/ui';
 import Image from 'next/image';
@@ -10,7 +10,6 @@ import Link from 'next/link';
 import { usePostForgotMutation } from '../../api/api';
 const Form = () => {
   const [postForgot, { isLoading, isError }] = usePostForgotMutation();
-
 
   const formik = useFormik({
     initialValues: { Email: '' },
@@ -52,7 +51,7 @@ const Form = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.Email && formik.errors.Email? (
+            {formik.touched.Email && formik.errors.Email ? (
               <div className="text-red-500">{formik.errors.Email}</div>
             ) : null}
           </div>
