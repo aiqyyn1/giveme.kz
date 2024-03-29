@@ -6,8 +6,11 @@ import toys from '../../../../../public/assets/toys.svg';
 import shoes from '../../../../../public/assets/shoes.svg';
 import addFile from '../../../../../public/assets/addFile.svg';
 import deleteLogo from '../../../../../public/assets/delete.svg';
-import {CARD_TEXT} from './string'
+import { CARD_TEXT } from './string';
 import SubCard from '../subcard/ui';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useSelector } from 'react-redux';
 
 const data = [
   {
@@ -26,10 +29,30 @@ const data = [
 
 const Card = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [categoryId, setCategoryId] = useState(0);
+  const stateText = useSelector((state) => state.uploadText);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+  };
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('item_file', selectedFile);
+    if (stateText === 'CLOTHES') {
+      setCategoryId(1);
+    } else if (stateText === 'TOYS') {
+      setCategoryId(2);
+    } else {
+      setCategoryId(3);
+    }
+    formData.append('category_id', categoryId);
+    const response = axios.post('https://giveme-kz-backend-2.onrender.com/item/create', formData, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get('access')}`,
+      },
+    });
   };
 
   return (
@@ -44,7 +67,12 @@ const Card = () => {
         </div>
         <div className="flex gap-6 mt-5">
           {data.map((item, index) => (
-            <SubCard key={index} text={item.text} image={item.image} />
+            <SubCard
+              key={index}
+              onClick={() => console.log('dewdew')}
+              text={item.text}
+              image={item.image}
+            />
           ))}
         </div>
         <div className="mt-24">
@@ -54,20 +82,15 @@ const Card = () => {
           <div className="mt-6">
             <span>{CARD_TEXT.SUB_UPLOAD}</span>
           </div>
-          <div className="bg-white w-4/5 rounded-lg border h-[220px] mt-4 border-gray-300 flex items-center justify-center space-x-2">
+          <form onSubmit={handleOnSubmit}>
             <label htmlFor="fileInput" className="cursor-pointer">
-              <Image src={addFile} width={24} height={24} alt="Add File" />
-            </label>
-            <input id="fileInput" type="file" className="hidden" onChange={handleFileChange} />
-          </div>
-          <div className="mt-4">
-            {selectedFile && (
-              <div className="inline-flex items-center pr-4  bg-white">
-                <span className="text-lg">{selectedFile.name}</span>
-                <Image src={deleteLogo} className="ml-3" />
+              <div className="bg-white w-4/5 rounded-lg border h-[220px] mt-4 border-gray-300 flex items-center justify-center space-x-2">
+                <Image src={addFile} width={70} height={70} alt="Add File" />
+                <input id="fileInput" type="file" className="hidden" onChange={handleFileChange} />
               </div>
-            )}
-          </div>
+            </label>
+            <button type="submit">send</button>
+          </form>
         </div>
       </div>
     </div>

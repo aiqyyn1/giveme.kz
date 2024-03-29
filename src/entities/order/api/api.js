@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-export const orderApi= createApi({
+import Cookies from 'js-cookie';
+export const orderApi = createApi({
   reducerPath: 'orderApi',
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.baseURL,
@@ -11,8 +11,11 @@ export const orderApi= createApi({
         url: '/order/create',
         method: 'POST',
         body: data,
+        headers: {
+          Authorization: `Bearer ${Cookies.get('access')}`,
+        },
       }),
     }),
   }),
 });
-export const { usePostOrderMutation} = orderApi;
+export const { usePostOrderMutation } = orderApi;

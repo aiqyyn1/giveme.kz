@@ -4,14 +4,16 @@ import Input from '../../../shared/input/ui/ui';
 import Button from '../../../shared/button/ui/ui';
 import { useFormik } from 'formik';
 import { validationSchema } from '../lib/validation';
-const Order = () => {
+import { usePostOrderMutation } from '../api/api';
+const Order = ({ id }) => {
+  const [postOrder, { data }] = usePostOrderMutation();
   const formik = useFormik({
-    initialValues: { Name: '', Phone: '', City: '', Address: '' },
+    initialValues: { contact_name: '', phone_number: '', city: '', address: '', item_id: id },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        // const response = await postForgot(values);
-        // console.log(response);
+        const response = await postOrder(values);
+        console.log(response);
         console.log(values);
       } catch (error) {
         console.log(error);
@@ -30,26 +32,26 @@ const Order = () => {
               <Input
                 placeholder="Name"
                 text="Your name"
-                name="Name"
-                value={formik.values.Name}
+                name="contact_name"
+                value={formik.values.contact_name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.Name && formik.errors.Name ? (
-                <div className="text-red-500">{formik.errors.Name}</div>
+              {formik.touched.contact_name && formik.errors.contact_name ? (
+                <div className="text-red-500">{formik.errors.contact_name}</div>
               ) : null}
             </div>
             <div>
               <Input
                 placeholder="Phone"
                 text="Phone"
-                name="Phone"
-                value={formik.values.Phone}
+                name="phone_number"
+                value={formik.values.phone_number}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.Phone && formik.errors.Phone ? (
-                <div className="text-red-500">{formik.errors.Phone}</div>
+              {formik.touched.phone_number && formik.errors.phone_number ? (
+                <div className="text-red-500">{formik.errors.phone_number}</div>
               ) : null}
             </div>
 
@@ -57,26 +59,26 @@ const Order = () => {
               <Input
                 placeholder="Address"
                 text="City"
-                name="City"
-                value={formik.values.City}
+                name="city"
+                value={formik.values.city}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.City && formik.errors.City ? (
-                <div className="text-red-500">{formik.errors.City}</div>
+              {formik.touched.city && formik.errors.city ? (
+                <div className="text-red-500">{formik.errors.city}</div>
               ) : null}
             </div>
             <div>
               <Input
                 placeholder="Address"
                 text="Address"
-                name="Address"
-                value={formik.values.Address}
+                name="address"
+                value={formik.values.address}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.Address && formik.errors.Address ? (
-                <div className="text-red-500">{formik.errors.Address}</div>
+              {formik.touched.address && formik.errors.address ? (
+                <div className="text-red-500">{formik.errors.address}</div>
               ) : null}
             </div>
             <div>

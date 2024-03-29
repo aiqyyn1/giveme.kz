@@ -78,8 +78,13 @@ function Items() {
                   <div className="flex justify-center font-inter font-bold mt-6">
                     <span>{item.cat_name}</span>
                   </div>
-                  <div className="flex justify-center mt-5 ">
-                    <button className="bg-buttonPink w-[228px] h-[48px] rounded-lg text-white">RECIEVE</button>
+                  <div className=" ">
+                    <Link
+                      href={`/order/${item.id}`}
+                      className="bg-buttonPink flex justify-center items-center mt-5 ml-2  w-[228px] h-[48px] rounded-lg text-white"
+                    >
+                      RECIEVE
+                    </Link>
                   </div>
                 </div>
               );

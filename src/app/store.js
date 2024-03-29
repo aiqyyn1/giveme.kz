@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authreg from '../pages_0/registration/lib/slice';
 import token from '../pages_0/login/lib/slice';
 import categories from '../features/items/lib/slice';
+import uploadText from '../pages_0/upload-page/lib/slices'
 import { authApi } from '../pages_0/registration/api/api';
 import { authApiLogin } from '../pages_0/login/api/api';
 import { authForgot } from '../pages_0/forget-password/api/api';
@@ -20,6 +21,7 @@ export const makeStore = () => {
       categories: categories,
       [itemsAPI.reducerPath]: itemsAPI.reducer,
       [orderApi.reducerPath]: orderApi.reducer,
+      uploadText:uploadText
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
