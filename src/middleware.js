@@ -31,5 +31,5 @@ export async function middleware(request) {
   return NextResponse.next();
 }
 export const config = {
-  matches: ['/register'],
+  matches: ['/register', 'login'],
 };
