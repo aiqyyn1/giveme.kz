@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import clothes from '../../../../../public/assets/clothes.svg';
 import toys from '../../../../../public/assets/toys.svg';
@@ -8,9 +8,9 @@ import addFile from '../../../../../public/assets/addFile.svg';
 import deleteLogo from '../../../../../public/assets/delete.svg';
 import { CARD_TEXT } from './string';
 import SubCard from '../subcard/ui';
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelectedFile, setCategoryId } from '../../lib/slices';
+import { useCreateItemMutation } from '../../api/api';
 
 const data = [
   {
@@ -28,31 +28,36 @@ const data = [
 ];
 
 const Card = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [categoryId, setCategoryId] = useState(0);
-  const stateText = useSelector((state) => state.uploadText);
-
+  const createItemState = useSelector((state) => state.uploadText);
+  console.log(createItemState);
+  const [postCreate] = useCreateItemMutation();
+  const dispatch = useDispatch();
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
+
+    dispatch(setSelectedFile(file));
   };
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('item_file', selectedFile);
-    if (stateText === 'CLOTHES') {
-      setCategoryId(1);
-    } else if (stateText === 'TOYS') {
-      setCategoryId(2);
-    } else {
-      setCategoryId(3);
+
+  useEffect(() => {
+    if (createItemState.text === 'CLOTHES') {
+      dispatch(setCategoryId(1));
+    } else if (createItemState.text === 'TOYS') {
+      dispatch(setCategoryId(2));
+    } else if (createItemState.text === 'SHOES') {
+      dispatch(setCategoryId(3));
     }
-    formData.append('category_id', categoryId);
-    const response = axios.post('https://giveme-kz-backend-2.onrender.com/item/create', formData, {
-      headers: {
-        Authorization: `Bearer ${Cookies.get('access')}`,
-      },
-    });
+  }, [createItemState.text]);
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('item_file', createItemState.selectedFile);
+    formData.append('category_id', createItemState.categoryId);
+    try {
+      const response = await postCreate(formData).unwrap();
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -89,7 +94,21 @@ const Card = () => {
                 <input id="fileInput" type="file" className="hidden" onChange={handleFileChange} />
               </div>
             </label>
-            <button type="submit">send</button>
+            <div>
+              <button
+                type="button"
+                className="bg-red w-4/5 mt-4 h-14 text-white rounded-lg"
+                onClick={() => dispatch(setSelectedFile(null))}
+              >
+                DELETE
+              </button>
+            </div>
+            <button
+              type="submit"
+              className="bg-buttonPink mt-20 mb-36 w-4/5 h-14 text-white rounded-lg"
+            >
+              SEND
+            </button>
           </form>
         </div>
       </div>

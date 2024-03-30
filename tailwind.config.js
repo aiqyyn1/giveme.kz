@@ -17,8 +17,9 @@ module.exports = {
       colors: {
         yellow: '#F5E8A7',
         pink: '#FFF7FF',
-        buttonPink:'#F89BEF',
+        buttonPink: '#F89BEF',
         buttonColor: '#2C2F2F',
+        red: '#FE5E5E',
       },
       fontFamily: {
         DM: ['DM Sans', 'san-serif'],

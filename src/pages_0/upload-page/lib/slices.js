@@ -2,16 +2,24 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   text: '',
+  selectedFile: null,
+  categoryId: 0,
 };
 
-const textSlice = createSlice({
-  name: 'uploadText',
+const createItemSlice = createSlice({
+  name: 'getText',
   initialState,
   reducers: {
     setText: (state, action) => {
       state.text = action.payload;
     },
+    setSelectedFile: (state, action) => {
+      state.selectedFile = action.payload;
+    },
+    setCategoryId: (state, action) => {
+      state.categoryId = action.payload;
+    },
   },
 });
-export const { setText } = textSlice.actions;
-export default textSlice.reducer;
+export const { setText, setSelectedFile, setCategoryId } = createItemSlice.actions;
+export default createItemSlice.reducer;
