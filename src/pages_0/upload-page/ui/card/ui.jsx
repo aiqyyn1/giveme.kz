@@ -97,7 +97,7 @@ const Card = () => {
             <div>
               <button
                 type="button"
-                className="bg-red w-4/5 mt-4 h-14 text-white rounded-lg"
+                className="bg-red_button w-4/5 mt-4 h-14 text-white rounded-lg"
                 onClick={() => dispatch(setSelectedFile(null))}
               >
                 DELETE
