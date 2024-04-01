@@ -16,7 +16,7 @@ export default function Page() {
             },
           });
           if (res.status === 200) {
-            router.push('/upload');
+            router.push('/main');
           }
         } catch (e) {
           console.error(e);
