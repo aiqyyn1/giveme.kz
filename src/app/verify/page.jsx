@@ -15,9 +15,8 @@ export default function Page() {
               token: token,
             },
           });
-          if (res.status === 200) {
-            redirect('/login');
-          }
+          console.log(res.status)
+          
         } catch (e) {
           console.error(e);
         }
