@@ -5,6 +5,7 @@ import image1 from '../../../../public/assets/maininfo1.svg';
 import image2 from '../../../../public/assets/maininfo2.svg';
 import image3 from '../../../../public/assets/maininfo3.svg';
 import image4 from '../../../../public/assets/maininfo4.svg';
+import SubPhoto from './sub-photo/SubPhoto';
 const data = [
   {
     title: 'Hand over things',
@@ -49,6 +50,7 @@ const Main = () => {
           );
         })}
       </div>
+      <SubPhoto />
     </div>
   );
 };
