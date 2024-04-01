@@ -2,7 +2,7 @@
 import { redirect } from 'next/navigation';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 export default function Page() {
   const tokenParams = useSearchParams();
   const token = new URLSearchParams(tokenParams.toString()).get('token');
@@ -23,4 +23,9 @@ export default function Page() {
     }
     verify();
   }, []);
+  return (
+    <Suspense>
+      <div></div>
+    </Suspense>
+  );
 }
