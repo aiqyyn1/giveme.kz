@@ -15,8 +15,9 @@ export default function Page() {
               token: token,
             },
           });
-          console.log(res.status)
-          
+          if (res.status === 200) {
+            redirect('/upload');
+          }
         } catch (e) {
           console.error(e);
         }
