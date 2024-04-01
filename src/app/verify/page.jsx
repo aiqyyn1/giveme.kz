@@ -8,10 +8,11 @@ export default function Page() {
     const token = new URLSearchParams(tokenParams.toString()).get('token');
     useEffect(() => {
       async function verify() {
+        console.log(token);
         try {
           const res = await axios.get(`${process.env.baseURL}/user/activate_account/`, {
             headers: {
-              Authorization: `Bearer ${token}`,
+              token: token,
             },
           });
           if (res.status === 200) {
