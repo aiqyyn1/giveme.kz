@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { setText } from '../../lib/slices';
 import Image from 'next/image';
 import classNames from 'classnames';
-import { useDispatch } from 'react-redux';
+import { useDispatch  } from 'react-redux';
 
 const SubCard = ({ text, image }) => {
   const [backgroundBlack, setBackgroundBlack] = useState(false);

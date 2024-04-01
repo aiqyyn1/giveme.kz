@@ -15,7 +15,6 @@ export default function Page() {
               token: token,
             },
           });
-          console.log('kox', res.status)
           if (res.status === 200) {
             router.push('/upload');
           }
