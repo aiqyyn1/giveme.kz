@@ -10,7 +10,6 @@ export const tokenSlice = createSlice({
   initialState,
   reducers: {
     setToken: (state, action) => {
-      console.log(action.payload);
       const { token, exprireHours, cookieName } = action.payload;
       const expirationDate = new Date();
       expirationDate.setTime(expirationDate.getTime() + exprireHours * 60 * 60 * 1000);

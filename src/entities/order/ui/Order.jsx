@@ -14,7 +14,6 @@ const Order = ({ id }) => {
       try {
         const response = await postOrder(values);
         console.log(response);
-        console.log(values);
       } catch (error) {
         console.log(error);
       }

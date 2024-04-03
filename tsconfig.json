@@ -29,6 +29,6 @@
     "src/app/store.js",
     "src/app/register/page.jsx",
     "src/pages_0/forget-password/ui/Form/Form.jsx"
-, "src/app/items/page.jsx", "src/app/verify/page.jsx", "src/app/main/page.jsx"  ],
+, "src/app/items/page.jsx", "src/app/verify/page.jsx", "src/app/main/page.jsx", "src/app/about/page.jsx"  ],
   "exclude": ["node_modules"]
 }

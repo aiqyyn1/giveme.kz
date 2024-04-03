@@ -1,18 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
-import background from '../../../../../public/assets/backgroundMain.svg';
-const MainPhoto = () => {
+
+const MainPhoto = ({ background, text, subtext }) => {
   return (
     <div>
       <div className="relative flex justify-center items-center">
         <Image src={background}></Image>
         <div className="absolute text-center top-24">
-          <div className=" text-white text-[44px] font-bold">Welcome to GiveMe.kz!</div>
-          <div className="text-white text-lg">
-            Where your generosity earns rewards. Donate your unused items and help those in need.{' '}
-            <br />
-            Let&apos;s make a positive impact together!
-          </div>
+          <div className=" text-white text-[44px] font-bold" dangerouslySetInnerHTML={{__html:text}}></div>
+          <div className="text-white text-lg" dangerouslySetInnerHTML={{ __html: subtext }}></div>
         </div>
       </div>
     </div>

@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authreg from '../pages_0/registration/lib/slice';
-import token from '../pages_0/login/lib/slice';
+import authreg from '../features/registration/lib/slice';
+import token from '../features/login/lib/slice';
 import categories from '../features/items/lib/slice';
 import uploadText from '../pages_0/upload-page/lib/slices';
-import { authApi } from '../pages_0/registration/api/api';
-import { authApiLogin } from '../pages_0/login/api/api';
+import { authApi } from '../features/registration/api/api';
+import { authApiLogin } from '../features/login/api/api';
 import { authForgot } from '../pages_0/forget-password/api/api';
-import { authReset } from '../pages_0/reset-password/api/api';
+import { authReset } from '../features/reset-password/api/api';
 import { itemsAPI } from '../features/items/api/api';
 import { orderApi } from '../entities/order/api/api';
 import { createItemApi } from '../pages_0/upload-page/api/api';

@@ -6,6 +6,8 @@ import image2 from '../../../../public/assets/maininfo2.svg';
 import image3 from '../../../../public/assets/maininfo3.svg';
 import image4 from '../../../../public/assets/maininfo4.svg';
 import SubPhoto from './sub-photo/SubPhoto';
+import background from '../../../../public/assets/backgroundMain.svg';
+import { string } from '../string/string';
 const data = [
   {
     title: 'Hand over things',
@@ -35,7 +37,7 @@ const data = [
 const Main = () => {
   return (
     <div>
-      <MainPhoto />
+      <MainPhoto background={background} text={string.text} subtext={string.sub_text} />
       <div className="flex flex-col gap-40">
         {data.map((item, index) => {
           return (
