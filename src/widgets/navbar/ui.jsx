@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from '../../../public/assets/givemeLogo.svg';
 import Image from 'next/image';
-
+import { router } from '../../shared/config/route-map';
+import Link from 'next/link';
 const Navbar = () => {
   return (
     <div className="text-white">
@@ -11,13 +12,15 @@ const Navbar = () => {
             <Image src={logo} alt="logo"></Image>
           </div>
           <div className="flex gap-8">
-            <span>Main</span>
-            <span>Give</span>
-            <span>Receive</span>
-            <span>Calculator</span>
-            <span>About us</span>
+            <Link href={router.homepage}>Main</Link>
+            <Link href={router.homepage}>Give</Link>
+            <Link href={router.homepage}>Receive</Link>
+            <Link href={router.homepage}>Calculator</Link>
+            <Link href={router.about}>About us</Link>
             <div>
-              <button className="bg-pink-400  w-24 rounded-sm">Sign in</button>
+              <Link href={router.signin} className="bg-pink-400  w-24 rounded-sm">
+                Sign in
+              </Link>
             </div>
           </div>
         </div>
