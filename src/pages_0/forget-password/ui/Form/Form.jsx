@@ -13,7 +13,7 @@ const Form = () => {
 
   const formik = useFormik({
     initialValues: { Email: '' },
-    validationSchema: validationSchema, // Pass the validation schema to useFormik hook
+    validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
         const response = await postForgot(values);

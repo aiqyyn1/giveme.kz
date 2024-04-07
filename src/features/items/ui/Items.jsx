@@ -7,16 +7,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCategories } from '../lib/slice';
 import { useGetItemsQuery } from '../api/api';
 import classNames from 'classnames';
+import Order from '../../../entities/order/ui/Order';
 function Items() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [isClicked, setIsClicked] = useState(false);
+  const [isModal, setIsModal] = useState(false);
+  const [id, setId] = useState(null);
   const state = useSelector((state) => state.categories.categories);
   const buttonCoolor = classNames();
   const { data: itemsData, isFetching } = useGetItemsQuery(state, {
     skipPollingIfUnfocused: true,
   });
-
   const handleCategoryClick = (category) => {
     setIsClicked(true);
     dispatch(setCategories(category));
@@ -37,7 +39,13 @@ function Items() {
       'text-white': isClicked,
     }
   );
-  console.log(itemsData);
+  const handleClickModal = (id) => {
+    setIsModal(true);
+    setId(id);
+  };
+  if (isModal) {
+    return <Order id={id} />;
+  }
   return (
     <div>
       <div className="flex flex-col ml-36 mt-20 gap-4">
@@ -79,12 +87,12 @@ function Items() {
                     <span>{item.cat_name}</span>
                   </div>
                   <div className=" ">
-                    <Link
-                      href={`/order/${item.id}`}
+                    <button
+                      onClick={(id) => handleClickModal(item.id)}
                       className="bg-buttonPink flex justify-center items-center mt-5 ml-2  w-[228px] h-[48px] rounded-lg text-white"
                     >
                       RECIEVE
-                    </Link>
+                    </button>
                   </div>
                 </div>
               );
