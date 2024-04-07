@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -43,9 +43,10 @@ function Items() {
     setIsModal(true);
     setId(id);
   };
-  if (isModal) {
-    return <Order id={id} />;
-  }
+  const onClose = useCallback(() => {
+    setIsModal(false);
+  }, []);
+
   return (
     <div>
       <div className="flex flex-col ml-36 mt-20 gap-4">
@@ -98,6 +99,7 @@ function Items() {
               );
             })}
         </div>
+        {isModal && <Order id={id} onClose={onClose}></Order>}
       </div>
     </div>
   );

@@ -22,10 +22,12 @@ const Order = ({ id, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white w-[400px] rounded-lg shadow-lg p-5">
+      <div className="bg-white w-[400px] rounded-lg p-5">
         <div className="flex justify-between items-center">
           <span className="font-bold text-xl">Your order</span>
-          <button onClick={onClose} className="text-lg font-bold">&times;</button>
+          <button onClick={onClose} className="text-lg font-bold">
+            &times;
+          </button>
         </div>
         <form onSubmit={formik.handleSubmit} className="mt-5">
           <div className="flex flex-col gap-6">
