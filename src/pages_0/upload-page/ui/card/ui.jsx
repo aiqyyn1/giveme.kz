@@ -1,19 +1,18 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-
 import addFile from '../../../../../public/assets/addFile.svg';
-import deleteLogo from '../../../../../public/assets/delete.svg';
 import { CARD_TEXT } from './string';
 import SubCard from '../subcard/ui';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedFile, setCategoryId, setIsActive } from '../../lib/slices';
+import { setSelectedFile, setCategoryId } from '../../lib/slices';
 import { useCreateItemMutation } from '../../api/api';
 import {data} from '../../../../shared/data/data'
-
+import {useHandleClickActive} from '../../../../shared/utils/functions'
 const Card = () => {
   const createItemState = useSelector((state) => state.uploadText);
-  
+  console.log(createItemState)
+  const handleClickActive = useHandleClickActive()
   const [postCreate] = useCreateItemMutation();
   const dispatch = useDispatch();
   const handleFileChange = (event) => {
@@ -21,9 +20,7 @@ const Card = () => {
 
     dispatch(setSelectedFile(file));
   };
-  const handleClickActive = (id) => {
-    dispatch(setIsActive(id))
-  };
+
 
   useEffect(() => {
     if (createItemState.text === 'CLOTHES') {
