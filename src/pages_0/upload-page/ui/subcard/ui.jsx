@@ -3,18 +3,18 @@ import React, { useState } from 'react';
 import { setText } from '../../lib/slices';
 import Image from 'next/image';
 import classNames from 'classnames';
-import { useDispatch  } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-const SubCard = ({ text, image }) => {
+const SubCard = ({ text, image, onClick, isActive }) => {
   const [backgroundBlack, setBackgroundBlack] = useState(false);
   const dispatch = useDispatch();
   const backgroundBlackClass = classNames('w-[328px] h-[191px]', {
-    'bg-white': !backgroundBlack,
-    'bg-black': backgroundBlack,
+    'bg-white': !isActive,
+    'bg-black': isActive,
   });
 
   const handleClick = () => {
-    setBackgroundBlack(!backgroundBlack);
+    onClick();
     dispatch(setText(text));
   };
 

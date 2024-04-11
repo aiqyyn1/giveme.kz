@@ -4,6 +4,7 @@ const initialState = {
   text: '',
   selectedFile: null,
   categoryId: 0,
+  isActive :0
 };
 
 const createItemSlice = createSlice({
@@ -19,7 +20,10 @@ const createItemSlice = createSlice({
     setCategoryId: (state, action) => {
       state.categoryId = action.payload;
     },
+    setIsActive : (state, action) => {
+      state.isActive = action.payload
+    }
   },
 });
-export const { setText, setSelectedFile, setCategoryId } = createItemSlice.actions;
+export const { setText, setSelectedFile, setCategoryId, setIsActive } = createItemSlice.actions;
 export default createItemSlice.reducer;

@@ -1,41 +1,28 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import clothes from '../../../../../public/assets/clothes.svg';
-import toys from '../../../../../public/assets/toys.svg';
-import shoes from '../../../../../public/assets/shoes.svg';
+
 import addFile from '../../../../../public/assets/addFile.svg';
 import deleteLogo from '../../../../../public/assets/delete.svg';
 import { CARD_TEXT } from './string';
 import SubCard from '../subcard/ui';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedFile, setCategoryId } from '../../lib/slices';
+import { setSelectedFile, setCategoryId, setIsActive } from '../../lib/slices';
 import { useCreateItemMutation } from '../../api/api';
-
-const data = [
-  {
-    text: 'CLOTHES',
-    image: clothes,
-  },
-  {
-    text: 'TOYS',
-    image: toys,
-  },
-  {
-    text: 'SHOES',
-    image: shoes,
-  },
-];
+import {data} from '../../../../shared/data/data'
 
 const Card = () => {
   const createItemState = useSelector((state) => state.uploadText);
-  console.log(createItemState);
+  
   const [postCreate] = useCreateItemMutation();
   const dispatch = useDispatch();
   const handleFileChange = (event) => {
     const file = event.target.files[0];
 
     dispatch(setSelectedFile(file));
+  };
+  const handleClickActive = (id) => {
+    dispatch(setIsActive(id))
   };
 
   useEffect(() => {
@@ -74,9 +61,10 @@ const Card = () => {
           {data.map((item, index) => (
             <SubCard
               key={index}
-              onClick={() => console.log('dewdew')}
               text={item.text}
+              isActive={item.id === createItemState.isActive}
               image={item.image}
+              onClick={() => handleClickActive(item.id)}
             />
           ))}
         </div>
