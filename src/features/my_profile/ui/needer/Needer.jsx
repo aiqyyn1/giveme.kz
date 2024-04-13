@@ -12,7 +12,9 @@ const Needer = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData();
-    formdata.append('files', files);
+    formdata.append('files', files[0]);
+    formdata.append('files', files[1]);
+    formdata.append('files', files[2]);
   
     try {
       await postFiles(formdata);
