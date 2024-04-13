@@ -3,6 +3,7 @@ import CopyCode from './copy-code/CopyCode';
 import ProfileData from './profile-data/ProfileData';
 import ChangePassword from './change-password/ChangePassword';
 import Needer from './needer/Needer';
+import MyItems from './my-items/MyItems';
 const MyProfile = () => {
   return (
     <div>
@@ -10,6 +11,7 @@ const MyProfile = () => {
       <ProfileData />
       <ChangePassword />
       <Needer />
+      <MyItems />
     </div>
   );
 };
