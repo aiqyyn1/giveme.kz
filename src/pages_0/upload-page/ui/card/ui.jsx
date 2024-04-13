@@ -1,18 +1,19 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import addFile from '../../../../../public/assets/addFile.svg';
+
 import { CARD_TEXT } from './string';
 import SubCard from '../subcard/ui';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedFile, setCategoryId } from '../../lib/slices';
 import { useCreateItemMutation } from '../../api/api';
-import {data} from '../../../../shared/data/data'
-import {useHandleClickActive} from '../../../../shared/utils/functions'
+import { data } from '../../../../shared/data/data';
+import { useHandleClickActive } from '../../../../shared/utils/functions';
+import FormUpload from '../../../../shared/form-upload/FormUpload';
 const Card = () => {
   const createItemState = useSelector((state) => state.uploadText);
-  console.log(createItemState)
-  const handleClickActive = useHandleClickActive()
+  console.log(createItemState);
+  const handleClickActive = useHandleClickActive();
   const [postCreate] = useCreateItemMutation();
   const dispatch = useDispatch();
   const handleFileChange = (event) => {
@@ -20,7 +21,6 @@ const Card = () => {
 
     dispatch(setSelectedFile(file));
   };
-
 
   useEffect(() => {
     if (createItemState.text === 'CLOTHES') {
@@ -72,29 +72,12 @@ const Card = () => {
           <div className="mt-6">
             <span>{CARD_TEXT.SUB_UPLOAD}</span>
           </div>
-          <form onSubmit={handleOnSubmit}>
-            <label htmlFor="fileInput" className="cursor-pointer">
-              <div className="bg-white w-4/5 rounded-lg border h-[220px] mt-4 border-gray-300 flex items-center justify-center space-x-2">
-                <Image src={addFile} width={70} height={70} alt="Add File" />
-                <input id="fileInput" type="file" className="hidden" onChange={handleFileChange} />
-              </div>
-            </label>
-            <div>
-              <button
-                type="button"
-                className="bg-red_button w-4/5 mt-4 h-14 text-white rounded-lg"
-                onClick={() => dispatch(setSelectedFile(null))}
-              >
-                DELETE
-              </button>
-            </div>
-            <button
-              type="submit"
-              className="bg-buttonPink mt-20 mb-36 w-4/5 h-14 text-white rounded-lg"
-            >
-              SEND
-            </button>
-          </form>
+          <FormUpload
+            text="SEND"
+            onClick={() => dispatch(setSelectedFile(null))}
+            handleFileChange={handleFileChange}
+            handleOnSubmit={handleOnSubmit}
+          />
         </div>
       </div>
     </div>

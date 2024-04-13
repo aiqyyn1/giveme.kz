@@ -1,15 +1,44 @@
-import React from 'react';
-
+'use client';
+import React, { useState } from 'react';
+import { PROFILE } from '../string';
+import FormUpload from '../../../../shared/form-upload/FormUpload';
+import { useNeedFilesMutation } from '../../api/api';
 const Needer = () => {
+  const [files, setFiles] = useState([]);
+  const [postFiles] = useNeedFilesMutation();
+  const handleFileChange = (e) => {
+    setFiles(Array.from(e.target.files));
+  };
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    const formdata = new FormData();
+    formdata.append('files', files);
+  
+    try {
+      await postFiles(formdata);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
-    <div>
-      <span>If you needer</span>
-      <div>
-        <span>To check your result, we ask you to provide the following documents:</span>
-        <span>Electronic ID: Please upload a scanned image of your official proof of identity document, such as a passport or your driver's license.</span>
-        <span>Benefit Documents: If you have any documents confirming your status as a benefit recipient, please provide them for further verification.</span>
-        <span>Photos: We also ask that you provide several photographs of your residence, including photographs of your documents and photographs of yourself.</span>
+    <div className="ml-40 mt-16">
+      <span className="text-[32px] font-bold text-buttonColor">{PROFILE.if_needer}</span>
+      <div className="mt-4 flex flex-col gap-4">
+        <span className="font-bold text-buttonColor">{PROFILE.check_res}</span>
+        <div>
+          <span className="font-bold">{PROFILE.electronic_id}</span>
+          <span dangerouslySetInnerHTML={{ __html: PROFILE.pls_upload }} className="ml-2"></span>
+        </div>
+        <div>
+          <span className="font-bold">{PROFILE.benefit_text}</span>
+          <span dangerouslySetInnerHTML={{ __html: PROFILE.benefit }} className="ml-2"></span>
+        </div>
+        <div>
+          <span className="font-bold">{PROFILE.Photos}</span>
+          <span dangerouslySetInnerHTML={{ __html: PROFILE.photos_sub }} className="ml-2"></span>
+        </div>
       </div>
+      <FormUpload text="VERIFICATE" handleOnSubmit={handleOnSubmit} handleFileChange={handleFileChange} />
     </div>
   );
 };
