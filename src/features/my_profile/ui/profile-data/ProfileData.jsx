@@ -3,7 +3,7 @@ import React from 'react';
 import { useGetProfileQuery } from '../../api/api';
 const ProfileData = () => {
   const { data } = useGetProfileQuery();
-  const { name, surname, email } = data;
+  // const { name, surname, email } = data;
   const textToCopy = '123456789';
   return (
     <div className="ml-40 mt-10">
@@ -11,13 +11,13 @@ const ProfileData = () => {
         <div className="flex gap-8">
           <span>Name and Surname:</span>
           <span className="font-bold">
-            {name} {surname}
+            {data?.name} {data?.surname}
           </span>
         </div>
 
         <div className="flex gap-[170px]">
           <span>Mail:</span>
-          <span className="font-bold">{email}</span>
+          <span className="font-bold">{data?.email}</span>
         </div>
         <div className="flex gap-[160px]">
           <span>Code:</span>
