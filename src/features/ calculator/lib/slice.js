@@ -14,7 +14,6 @@ const calculatorSlice = createSlice({
     },
     setSum: (state, action) => {
       const { weight, text } = action.payload;
-      console.log(text)
       if (text === 'CLOTHES') {
         state.sum = parseInt(weight) * 1800;
       } else if (text === 'SHOES') {

@@ -16,11 +16,9 @@ const Calculator = () => {
     dispatch(setWeight(e.target.value));
   };
   const handleCalculate = () => {
-    console.log(typeof parseInt(calculatorState.weight));
 
     dispatch(setSum({ weight: calculatorState.weight, text: createItemState }));
   };
-  console.log(calculatorState);
 
   return (
     <div className="mt-24 ml-40">
@@ -55,7 +53,7 @@ const Calculator = () => {
           </span>
         </div>
       </div>
-      <div className="bg-buttonPink flex text-white font-bold text-[22px] justify-center items-center w-[1032px] rounded-lg mt-[90px] mb-[120px] h-[61px]">
+      <div className="bg-buttonPink flex text-white font-bold text-[22px] justify-center items-center w-[1032px] rounded-lg mt-[90px]о mb-[120px] h-[61px]">
         <button onClick={handleCalculate}>{CALCULATOR.CALCULATOR}</button>
       </div>
     </div>

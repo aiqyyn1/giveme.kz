@@ -3,20 +3,20 @@ import React from 'react';
 import { setToken } from '../../lib/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import {validationSchema} from '../../lib/validation'
+import { validationSchema } from '../../lib/validation';
 import Input from '../../../../shared/input/ui/ui';
 import Button from '../../../../shared/button/ui/ui';
 import Image from 'next/image';
 import logo from '../../../../../public/assets/givemeBlack.svg';
 import Link from 'next/link';
 import { usePostLoginMutation } from '../../api/api';
+import { useRouter } from 'next/navigation';
 
 const Form = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.token);
   const [postLogin, { isError, isLoading, data }] = usePostLoginMutation();
-
- 
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues: {
@@ -32,6 +32,7 @@ const Form = () => {
         const refreshToken = response.data.access;
         dispatch(setToken({ cookieName: 'access', token: accessToken, exprireHours: 1 }));
         dispatch(setToken({ cookieName: 'refresh', token: refreshToken, exprireHours: 7 }));
+        router.push('/main');
       } catch (error) {
         console.log(error);
       }

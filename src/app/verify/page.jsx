@@ -16,7 +16,7 @@ export default function Page() {
             },
           });
           if (res.status === 200) {
-            router.push('/main');
+            router.push('/login');
           }
         } catch (e) {
           console.error(e);

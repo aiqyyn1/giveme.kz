@@ -11,6 +11,7 @@ import { authReset } from '../features/reset-password/api/api';
 import { itemsAPI } from '../features/items/api/api';
 import { orderApi } from '../entities/order/api/api';
 import { createItemApi } from '../pages_0/upload-page/api/api';
+import {profileApi} from '../features/my_profile/api/api'
 
 export const makeStore = () => {
   return configureStore({
@@ -26,7 +27,9 @@ export const makeStore = () => {
       [orderApi.reducerPath]: orderApi.reducer,
       uploadText: uploadText,
       [createItemApi.reducerPath]: createItemApi.reducer,
-      calculator:calculator
+      calculator:calculator,
+      [profileApi.reducerPath] : profileApi.reducer
+    
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
@@ -41,7 +44,8 @@ export const makeStore = () => {
         authReset.middleware,
         itemsAPI.middleware,
         orderApi.middleware,
-        createItemApi.middleware
+        createItemApi.middleware,
+        profileApi.middleware
       ),
   });
 };
