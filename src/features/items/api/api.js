@@ -25,4 +25,4 @@ export const itemsAPI = createApi({
   }),
   refetchOnMountOrArgChange: 10,
 });
-export const { useGetItemsQuery , useGetMyItemsQuery} = itemsAPI;
+export const { useGetItemsQuery, useGetMyItemsQuery } = itemsAPI;
