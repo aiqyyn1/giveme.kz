@@ -20,11 +20,19 @@ module.exports = {
         buttonPink: '#F89BEF',
         buttonColor: '#2C2F2F',
         red_button: '#FE5E5E',
-        green_color:'#06AA16'
+        green_color: '#06AA16',
+        gray_color: '#888D8D',
       },
       fontFamily: {
         DM: ['DM Sans', 'san-serif'],
         inter: ['Inter', 'sans-serif'],
+      },
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
       },
     },
   },

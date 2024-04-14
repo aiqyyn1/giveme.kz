@@ -6,7 +6,7 @@ const ProfileData = () => {
   // const { name, surname, email } = data;
   const textToCopy = '123456789';
   return (
-    <div className="ml-40 mt-10">
+    <div className="ml-8 mt-10 sm:ml-40">
       <div className="text-xl flex flex-col gap-7">
         <div className="flex gap-8">
           <span>Name and Surname:</span>
@@ -15,7 +15,7 @@ const ProfileData = () => {
           </span>
         </div>
 
-        <div className="flex gap-[170px]">
+        <div className="flex flex-col gap-2 sm:flex-row sm:gap-[170px]" >
           <span>Mail:</span>
           <span className="font-bold">{data?.email}</span>
         </div>

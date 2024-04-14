@@ -12,7 +12,7 @@ const MyItems = () => {
         {!data && <div>No orders yet</div>}
         {data?.map((item, index) => {
           const statusClassName = classNames('', {
-            'text-white': item.status === 'REVIEW',
+            'text-gray_color': item.status === 'REVIEW',
             'text-green_color': item.status === 'ACTIVE',
             'text-red_button': item.status === 'REMOVED',
           });
