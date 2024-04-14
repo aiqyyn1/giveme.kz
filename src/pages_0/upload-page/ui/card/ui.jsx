@@ -48,12 +48,12 @@ const Card = () => {
     formData.append('contact_address', data1.contact_address);
     try {
       const response = await postCreate(formData).unwrap();
-      console.log(response);
+  
     } catch (e) {
       console.log(e);
     }
   };
-  console.log(data1);
+
 
   return (
     <div>

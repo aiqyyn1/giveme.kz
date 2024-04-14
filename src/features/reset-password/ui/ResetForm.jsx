@@ -23,7 +23,7 @@ const ResetForm = () => {
     onSubmit: async (values) => {
       try {
         const response = await postReset({ token, ...values });
-        console.log(response);
+
       } catch (error) {
         console.log(error);
       }

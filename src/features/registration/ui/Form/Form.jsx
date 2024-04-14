@@ -20,7 +20,7 @@ const FormForgotPassword = () => {
     onSubmit: async (values) => {
       try {
         const response = await postRegister(values);
-        console.log(response);
+    
       } catch (error) {
         console.log(error);
       }

@@ -17,7 +17,7 @@ const Form = () => {
     onSubmit: async (values) => {
       try {
         const response = await postForgot(values);
-        console.log(response);
+      
       } catch (error) {
         console.log(error);
       }

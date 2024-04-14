@@ -23,7 +23,7 @@ export async function middleware(request) {
       return NextResponse.redirect(new URL('/login', request.url));
     }
     const userRole = await getUserRoleFromSessionToken(sessionToken);
-    console.log(userRole);
+
     if (userRole !== 'ADMIN') {
       return NextResponse.redirect(new URL('/restrictions', request.url));
     }
