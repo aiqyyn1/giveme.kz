@@ -9,6 +9,7 @@ const MyItems = () => {
     <div className="ml-40">
       <span className=" text-bold text-[32px] text-buttonColor font-bold">Orders</span>
       <div className="flex flex-col gap-6 mt-8 mb-10">
+        {!data && <div>No orders yet</div>}
         {data?.map((item, index) => {
           const statusClassName = classNames('', {
             'text-white': item.status === 'REVIEW',
