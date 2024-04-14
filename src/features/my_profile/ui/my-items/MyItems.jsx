@@ -1,11 +1,12 @@
-'use client'
+'use client';
 import React from 'react';
-import {useGetMyItemsQuery} from '../../../items/api/api'
+import { useGetMyItemsQuery } from '../../../items/api/api';
 const MyItems = () => {
-  const {data} = useGetMyItemsQuery()
+  const { data } = useGetMyItemsQuery();
   console.log(data)
   return (
     <div>
+      <span className="ml-40">Orders</span>
       
     </div>
   );

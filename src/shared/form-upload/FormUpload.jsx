@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import addFile from '../../../public/assets/addFile.svg';
-const FormUpload = ({  onClick, text, handleOnSubmit, handleFileChange }) => {
+const FormUpload = ({ onClick, text, handleOnSubmit, handleFileChange, handleDataChange }) => {
   return (
     <form onSubmit={handleOnSubmit}>
       <label htmlFor="fileInput" className="cursor-pointer">
@@ -25,6 +25,26 @@ const FormUpload = ({  onClick, text, handleOnSubmit, handleFileChange }) => {
           DELETE
         </button>
       </div>
+      {text === 'SEND' && (
+        <div className="flex flex-col gap-6 mt-7">
+          <span className="text-[32px] font-bold text-buttonColor">Write info</span>
+          <span className="text-lg text-buttonColor ">
+            Write your address and phone number so we can pick up this item.
+          </span>
+          <input
+            placeholder="Address"
+            className="h-12 bg-buttonColor rounded-lg p-4 w-4/5"
+            name='contact_phone_number'
+            onChange={handleDataChange}
+          ></input>
+          <input
+            placeholder="Phone number"
+            className="h-12 bg-buttonColor rounded-lg p-4 w-4/5"
+            name='contact_address'
+            onChange={handleDataChange}
+          ></input>
+        </div>
+      )}
       <button type="submit" className="bg-buttonPink mt-8 mb-36 w-4/5 h-14 text-white rounded-lg">
         {text}
       </button>

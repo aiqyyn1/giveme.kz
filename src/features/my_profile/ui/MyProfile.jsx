@@ -12,6 +12,7 @@ const MyProfile = () => {
       <ChangePassword />
       <Needer />
       <MyItems />
+      
     </div>
   );
 };

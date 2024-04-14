@@ -1,7 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-
 import { CARD_TEXT } from './string';
 import SubCard from '../subcard/ui';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,10 +10,20 @@ import { useHandleClickActive } from '../../../../shared/utils/functions';
 import FormUpload from '../../../../shared/form-upload/FormUpload';
 const Card = () => {
   const createItemState = useSelector((state) => state.uploadText);
-  console.log(createItemState);
   const handleClickActive = useHandleClickActive();
   const [postCreate] = useCreateItemMutation();
   const dispatch = useDispatch();
+  const [data1, setData] = useState({
+    contact_phone_number: '',
+    contact_address: '',
+  });
+  const handleDataChange = (event) => {
+    const { name, value } = event.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
   const handleFileChange = (event) => {
     const file = event.target.files[0];
 
@@ -36,6 +44,8 @@ const Card = () => {
     let formData = new FormData();
     formData.append('item_file', createItemState.selectedFile);
     formData.append('category_id', createItemState.categoryId);
+    formData.append('contact_phone_number', data1.contact_phone_number);
+    formData.append('contact_address', data1.contact_address);
     try {
       const response = await postCreate(formData).unwrap();
       console.log(response);
@@ -43,6 +53,7 @@ const Card = () => {
       console.log(e);
     }
   };
+  console.log(data1);
 
   return (
     <div>
@@ -77,6 +88,7 @@ const Card = () => {
             onClick={() => dispatch(setSelectedFile(null))}
             handleFileChange={handleFileChange}
             handleOnSubmit={handleOnSubmit}
+            handleDataChange={handleDataChange}
           />
         </div>
       </div>
