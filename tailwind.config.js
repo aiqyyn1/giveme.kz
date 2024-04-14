@@ -20,6 +20,7 @@ module.exports = {
         buttonPink: '#F89BEF',
         buttonColor: '#2C2F2F',
         red_button: '#FE5E5E',
+        green_color:'#06AA16'
       },
       fontFamily: {
         DM: ['DM Sans', 'san-serif'],
