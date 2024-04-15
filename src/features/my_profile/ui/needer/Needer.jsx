@@ -23,7 +23,7 @@ const Needer = () => {
     }
   };
   return (
-    <div className="ml-40 mt-16">
+    <div className="ml-8 mt-16 sm:ml-40">
       <span className="text-[32px] font-bold text-buttonColor">{PROFILE.if_needer}</span>
       <div className="mt-4 flex flex-col gap-4">
         <span className="font-bold text-buttonColor">{PROFILE.check_res}</span>

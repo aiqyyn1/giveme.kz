@@ -12,6 +12,7 @@ import { itemsAPI } from '../features/items/api/api';
 import { orderApi } from '../entities/order/api/api';
 import { createItemApi } from '../pages_0/upload-page/api/api';
 import { profileApi } from '../features/my_profile/api/api';
+import {changePassApi} from '../pages_0/change-password/api/api'
 import isLoading from '../features/my_profile/lib/slice';
 
 export const makeStore = () => {
@@ -31,6 +32,7 @@ export const makeStore = () => {
       calculator: calculator,
       [profileApi.reducerPath]: profileApi.reducer,
       isLoading: isLoading,
+      [changePassApi.reducerPath] :changePassApi.reducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
@@ -46,7 +48,8 @@ export const makeStore = () => {
         itemsAPI.middleware,
         orderApi.middleware,
         createItemApi.middleware,
-        profileApi.middleware
+        profileApi.middleware,
+        changePassApi.middleware
       ),
   });
 };

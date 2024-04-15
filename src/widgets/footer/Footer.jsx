@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 const Footer = () => {
   return (
-    <div className="bg-buttonColor h-[364px] ">
+    <div className="bg-buttonColor ">
       <div className="flex justify-around w-11/12 items-center pt-28">
         <div>
           <Image src={logo} alt="" width={204} height={144}></Image>

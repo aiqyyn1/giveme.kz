@@ -6,7 +6,7 @@ import classNames from 'classnames';
 const MyItems = () => {
   const { data, isLoading } = useGetMyItemsQuery();
   return (
-    <div className="ml-40">
+    <div className="ml-8 sm:ml-40">
       <span className=" text-bold text-[32px] text-buttonColor font-bold">Orders</span>
       <div className="flex flex-col gap-6 mt-8 mb-10">
         {!data && <div>No orders yet</div>}
@@ -17,7 +17,7 @@ const MyItems = () => {
             'text-red_button': item.status === 'REMOVED',
           });
           return (
-            <div key={item.user_id} className="w-4/5 bg-buttonColor h-[132px] rounded-lg">
+            <div key={index} className="w-4/5 bg-buttonColor h-[132px] rounded-lg">
               <div className="flex gap-6 ml-20 mt-8 items-center">
                 <div>
                   <Image src={item.image} alt="" width={100} height={100}></Image>

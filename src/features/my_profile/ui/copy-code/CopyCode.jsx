@@ -16,7 +16,7 @@ const CopyCode = () => {
   };
 
   return (
-    <div className="ml-40 mt-32">
+    <div className="ml-8 mt-32 sm:ml-40">
       <div className="flex flex-col gap-8">
         <span className="text-buttonColor font-bold text-[32px]">{PROFILE.my_profile}</span>
         <span className="text-red_button text-[22px] font-bold">{PROFILE.for_payment}</span>

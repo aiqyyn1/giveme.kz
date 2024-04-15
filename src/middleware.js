@@ -11,25 +11,28 @@ async function getUserRoleFromSessionToken(sessionToken) {
     return data.role;
   } catch (error) {
     console.error('Failed to get user role', error);
-    return null; 
+    return null;
   }
 }
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
+  const sessionToken = request.cookies.get('access')?.value;
+  if (!sessionToken) {
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
   if (pathname.startsWith('/admin')) {
-    const sessionToken = request.cookies.get('access').value; 
-
-    if (!sessionToken) {
-      return NextResponse.redirect(new URL('/login', request.url));
-    }
     const userRole = await getUserRoleFromSessionToken(sessionToken);
 
     if (userRole !== 'ADMIN') {
-      return NextResponse.redirect(new URL('/restrictions', request.url));
+      if (pathname !== '/restrictions') {
+        return NextResponse.redirect(new URL('/restrictions', request.url));
+      }
+      return NextResponse.next();
     }
   }
+
   return NextResponse.next();
 }
 export const config = {
-  matches: ['/register', 'login'],
+  matcher: ['/main', '/items', '/user/profile']
 };

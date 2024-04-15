@@ -3,7 +3,7 @@ import React from 'react';
 import { useGetProfileQuery } from '../../api/api';
 const ProfileData = () => {
   const { data } = useGetProfileQuery();
-  // const { name, surname, email } = data;
+
   const textToCopy = '123456789';
   return (
     <div className="ml-8 mt-10 sm:ml-40">
