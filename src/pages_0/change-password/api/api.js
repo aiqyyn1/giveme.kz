@@ -1,7 +1,7 @@
 import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react';
 import Cookies from 'js-cookie';
 export const changePassApi = createApi({
-  reducerPath: 'itemsAPI',
+  reducerPath: 'changePass',
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.baseURL,
   }),
