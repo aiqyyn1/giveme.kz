@@ -12,12 +12,13 @@ const Needer = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData();
-    formdata.append('files', files[0]);
-    formdata.append('files', files[1]);
-    formdata.append('files', files[2]);
-  
+    formdata.append('electronic_doc', files[0]);
+    formdata.append('benefit_doc', files[1]);
+    formdata.append('user_photo', files[2]);
+
     try {
-      await postFiles(formdata);
+      const response = await postFiles(formdata);
+      console.log(response);
     } catch (e) {
       console.log(e);
     }
@@ -40,7 +41,11 @@ const Needer = () => {
           <span dangerouslySetInnerHTML={{ __html: PROFILE.photos_sub }} className="ml-2"></span>
         </div>
       </div>
-      <FormUpload text="VERIFICATE" handleOnSubmit={handleOnSubmit} handleFileChange={handleFileChange} />
+      <FormUpload
+        text="VERIFICATE"
+        handleOnSubmit={handleOnSubmit}
+        handleFileChange={handleFileChange}
+      />
     </div>
   );
 };

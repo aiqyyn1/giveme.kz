@@ -5,6 +5,7 @@ const ProfileData = () => {
   const { data } = useGetProfileQuery();
 
   const textToCopy = '123456789';
+  console.log(data)
   return (
     <div className="ml-8 mt-10 sm:ml-40">
       <div className="text-xl flex flex-col gap-7">
