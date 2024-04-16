@@ -79,10 +79,12 @@ function Items() {
                 <div key={index} className="bg-white w-[245px] h-[400px]">
                   <Image
                     src={item.image}
-                    width={228}
-                    height={228}
+                    width={240}
+             
+                    height={240}
                     alt="alt"
-                    className="ml-2 mt-2"
+                    className="ml-3 mt-2 object-cover rounded-lg"
+                    style={{ width: '90%', height: '65%', objectFit: 'cover' }}
                   ></Image>
                   <div className="flex justify-center font-inter font-bold mt-6">
                     <span>{item.cat_name}</span>
