@@ -17,17 +17,18 @@ const Navbar = () => {
           </div>
           <div className="hidden sm:flex gap-8">
             <Link href={router.homepage}>Main</Link>
-            <Link href={router.homepage}>Give</Link>
-            <Link href={router.homepage}>Receive</Link>
-            <Link href={router.homepage}>Calculator</Link>
+            <Link href={router.upload}>Give</Link>
+            <Link href={router.items}>Receive</Link>
+            <Link href={router.calculator}>Calculator</Link>
             <Link href={router.about}>About us</Link>
             <div>
-              
               {data ? (
-                <div className='bg-buttonPink rounded-lg pl-2 pr-2'>
-                  {data.name} {data.bonus_count}B
-                </div>
-              ):(
+                <Link href={router.profile}>
+                  <div className="bg-buttonPink rounded-lg pl-2 pr-2">
+                    {data.name} {data.bonus_count}B
+                  </div>
+                </Link>
+              ) : (
                 <Link href={router.signin} className="bg-pink-400   rounded-sm">
                   Sign in
                 </Link>

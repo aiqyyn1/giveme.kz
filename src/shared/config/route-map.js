@@ -7,4 +7,6 @@ export const router = {
   about: '/about',
   forgot_password: '/forgot-password',
   reset_password: '/reset_password',
+  calculator:'/calculator',
+  profile:'user/profile'
 };
