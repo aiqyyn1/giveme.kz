@@ -3,7 +3,7 @@ import React from 'react';
 import CopyCode from './copy-code/CopyCode';
 import ProfileData from './profile-data/ProfileData';
 import ChangePassword from './change-password/ChangePassword';
-import Needer from './needer/Needer';
+import Status from './status/Status'
 import MyItems from './my-items/MyItems';
 const MyProfile = () => {
   return (
@@ -11,7 +11,7 @@ const MyProfile = () => {
       <CopyCode />
       <ProfileData />
       <ChangePassword />
-      <Needer />
+       <Status/>
       <MyItems />
     </div>
   );

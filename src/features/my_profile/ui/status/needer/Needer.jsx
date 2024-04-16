@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-import { PROFILE } from '../string';
-import FormUpload from '../../../../shared/form-upload/FormUpload';
-import { useNeedFilesMutation } from '../../api/api';
+import { PROFILE } from '../../string';
+import FormUpload from '../../../../../shared/form-upload/FormUpload';
+import { useNeedFilesMutation } from '../../../api/api';
 const Needer = () => {
   const [files, setFiles] = useState([]);
   const [postFiles] = useNeedFilesMutation();
@@ -18,7 +18,7 @@ const Needer = () => {
 
     try {
       const response = await postFiles(formdata);
-      console.log(response);
+    
     } catch (e) {
       console.log(e);
     }

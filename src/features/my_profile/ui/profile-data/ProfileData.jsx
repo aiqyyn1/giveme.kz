@@ -1,11 +1,16 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGetProfileQuery } from '../../api/api';
+import { setNeederStatus } from '../../lib/slice';
+import { useDispatch } from 'react-redux';
 const ProfileData = () => {
   const { data } = useGetProfileQuery();
 
   const textToCopy = '123456789';
-  console.log(data)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setNeederStatus(data?.needer_status));
+  }, [data?.needer_status]);
   return (
     <div className="ml-8 mt-10 sm:ml-40">
       <div className="text-xl flex flex-col gap-7">
@@ -16,7 +21,7 @@ const ProfileData = () => {
           </span>
         </div>
 
-        <div className="flex flex-col gap-2 sm:flex-row sm:gap-[170px]" >
+        <div className="flex flex-col gap-2 sm:flex-row sm:gap-[170px]">
           <span>Mail:</span>
           <span className="font-bold">{data?.email}</span>
         </div>

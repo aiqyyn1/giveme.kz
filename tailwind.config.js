@@ -22,6 +22,7 @@ module.exports = {
         red_button: '#FE5E5E',
         green_color: '#06AA16',
         gray_color: '#888D8D',
+        green_open_color:'#A7F7A5'
       },
       fontFamily: {
         DM: ['DM Sans', 'san-serif'],
