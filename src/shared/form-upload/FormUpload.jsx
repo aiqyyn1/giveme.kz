@@ -1,7 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 import addFile from '../../../public/assets/addFile.svg';
-const FormUpload = ({ onClick, text, handleOnSubmit, handleFileChange, handleDataChange }) => {
+const FormUpload = ({
+  onClick,
+  text,
+  handleOnSubmit,
+  handleFileChange,
+  handleDataChange,
+  file,
+}) => {
   return (
     <form onSubmit={handleOnSubmit}>
       <label htmlFor="fileInput" className="cursor-pointer">
@@ -16,6 +23,9 @@ const FormUpload = ({ onClick, text, handleOnSubmit, handleFileChange, handleDat
           />
         </div>
       </label>
+      {file && (
+        <div className="bg-black w-96 mt-5 h-10 text-center rounded-lg text-white">{file}</div>
+      )}
       <div>
         <button
           type="button"
@@ -34,13 +44,13 @@ const FormUpload = ({ onClick, text, handleOnSubmit, handleFileChange, handleDat
           <input
             placeholder="Address"
             className="h-12 bg-buttonColor rounded-lg p-4 w-4/5"
-            name='contact_phone_number'
+            name="contact_phone_number"
             onChange={handleDataChange}
           ></input>
           <input
             placeholder="Phone number"
             className="h-12 bg-buttonColor rounded-lg p-4 w-4/5"
-            name='contact_address'
+            name="contact_address"
             onChange={handleDataChange}
           ></input>
         </div>

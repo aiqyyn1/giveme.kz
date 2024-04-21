@@ -10,6 +10,7 @@ import { useHandleClickActive } from '../../../../shared/utils/functions';
 import FormUpload from '../../../../shared/form-upload/FormUpload';
 const Card = () => {
   const createItemState = useSelector((state) => state.uploadText);
+  
   const handleClickActive = useHandleClickActive();
   const [postCreate] = useCreateItemMutation();
   const dispatch = useDispatch();
@@ -90,6 +91,7 @@ const Card = () => {
             handleFileChange={handleFileChange}
             handleOnSubmit={handleOnSubmit}
             handleDataChange={handleDataChange}
+            file={createItemState.selectedFile?.name}
           />
         </div>
       </div>
