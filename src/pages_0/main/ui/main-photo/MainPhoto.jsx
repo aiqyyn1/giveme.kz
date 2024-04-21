@@ -5,7 +5,7 @@ const MainPhoto = ({ background, text, subtext }) => {
   return (
     <div>
       <div className="relative flex justify-center items-center">
-        <Image src={background}  objectFit='cover' className='w-auto h-auto'></Image>
+        <Image src={background}  className='w-full'></Image>
         <div className="absolute text-center top-24">
           <div className=" text-white text-[44px] font-bold" dangerouslySetInnerHTML={{__html:text}}></div>
           <div className="text-white text-lg" dangerouslySetInnerHTML={{ __html: subtext }}></div>
