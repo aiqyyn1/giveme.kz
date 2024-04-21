@@ -43,7 +43,7 @@ const Calculator = () => {
         ></input>
       </div>
       <div className="mt-20 flex  flex-col gap-[90px]">
-        <div className='flex'>
+        <div className="flex">
           <span
             dangerouslySetInnerHTML={{ __html: CALCULATOR.GET }}
             className="font-bold text-[32px] "
@@ -53,9 +53,12 @@ const Calculator = () => {
             {calculatorState.sum === 1 ? 0 : calculatorState.sum} B
           </span>
         </div>
-        <div className="bg-buttonPink flex text-white font-bold text-[22px] justify-center items-center w-[1032px] rounded-lg mt-[90px]о mb-[120px] h-[61px]">
-          <button onClick={handleCalculate}>{CALCULATOR.CALCULATOR}</button>
-        </div>
+        <button
+          onClick={handleCalculate}
+          className="bg-buttonPink cursor-pointer flex text-white font-bold text-[22px] justify-center items-center w-[1032px] rounded-lg mt-[90px] mb-[120px] h-[61px]"
+        >
+          {CALCULATOR.CALCULATOR}
+        </button>
       </div>
     </div>
   );
