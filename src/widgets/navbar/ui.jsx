@@ -13,7 +13,9 @@ const Navbar = () => {
       <nav className="bg-black">
         <div className="  h-20 flex items-center justify-around">
           <div>
-            <Image src={logo} alt="logo"></Image>
+            <Link href={router.homepage}>
+              <Image src={logo} alt="logo"></Image>
+            </Link>
           </div>
           <div className="hidden sm:flex gap-8">
             <Link href={router.homepage}>Main</Link>
