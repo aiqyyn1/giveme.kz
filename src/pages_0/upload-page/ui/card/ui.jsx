@@ -71,6 +71,7 @@ const Card = () => {
               key={index}
               text={item.text}
               isActive={item.id === createItemState.isActive}
+              activeImage={item.isActiveImage}
               image={item.image}
               onClick={() => handleClickActive(item.id)}
             />

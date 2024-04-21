@@ -16,7 +16,6 @@ const Calculator = () => {
     dispatch(setWeight(e.target.value));
   };
   const handleCalculate = () => {
-
     dispatch(setSum({ weight: calculatorState.weight, text: createItemState }));
   };
 
@@ -30,6 +29,7 @@ const Calculator = () => {
             text={item.text}
             isActive={item.id === isActive}
             image={item.image}
+            activeImage={item.isActiveImage}
             onClick={() => handleClickActive(item.id)}
           />
         ))}
@@ -42,19 +42,20 @@ const Calculator = () => {
           onChange={handleChangeWeight}
         ></input>
       </div>
-      <div className="mt-20 flex gap-4">
-        <span
-          dangerouslySetInnerHTML={{ __html: CALCULATOR.GET }}
-          className="font-bold text-[32px] "
-        ></span>
-        <div className="bg-red_button rounded-lg pl-2 pr-2">
-          <span className="text-[32px] text-white ">
+      <div className="mt-20 flex  flex-col gap-[90px]">
+        <div className='flex'>
+          <span
+            dangerouslySetInnerHTML={{ __html: CALCULATOR.GET }}
+            className="font-bold text-[32px] "
+          ></span>
+
+          <span className="text-[32px] ml-2 bg-red_button w-auto rounded-lg pl-2 pr-2 text-white ">
             {calculatorState.sum === 1 ? 0 : calculatorState.sum} B
           </span>
         </div>
-      </div>
-      <div className="bg-buttonPink mt-5 flex text-white font-bold text-[22px] justify-center items-center w-[1032px] rounded-lg mt-[90px]о mb-[120px] h-[61px]">
-        <button onClick={handleCalculate}>{CALCULATOR.CALCULATOR}</button>
+        <div className="bg-buttonPink flex text-white font-bold text-[22px] justify-center items-center w-[1032px] rounded-lg mt-[90px]о mb-[120px] h-[61px]">
+          <button onClick={handleCalculate}>{CALCULATOR.CALCULATOR}</button>
+        </div>
       </div>
     </div>
   );
