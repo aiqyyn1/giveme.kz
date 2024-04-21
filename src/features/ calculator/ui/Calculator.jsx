@@ -53,7 +53,7 @@ const Calculator = () => {
           </span>
         </div>
       </div>
-      <div className="bg-buttonPink flex text-white font-bold text-[22px] justify-center items-center w-[1032px] rounded-lg mt-[90px]о mb-[120px] h-[61px]">
+      <div className="bg-buttonPink mt-5 flex text-white font-bold text-[22px] justify-center items-center w-[1032px] rounded-lg mt-[90px]о mb-[120px] h-[61px]">
         <button onClick={handleCalculate}>{CALCULATOR.CALCULATOR}</button>
       </div>
     </div>

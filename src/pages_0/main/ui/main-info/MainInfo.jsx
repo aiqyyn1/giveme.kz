@@ -7,11 +7,12 @@ const MainInfo = ({ text, isRightAligned, title, buttonText, image }) => {
   const createMarkup = (htmlText) => {
     return { __html: htmlText };
   };
-  console.log(title);
+  console.log(title)
   const pathname = usePathname();
   const isLeftAligned = classNames('flex', {
     'mb-[120px]': buttonText === 'ABOUT US',
     'mb-[120px]': title == 'Partnerships </br> with Orphanages and Charities',
+    'mb-[120px]':title =="How to use bonuses?",
     'gap-[53px] justify-center': pathname === '/about',
     'justify-around': pathname === '/main',
   });
