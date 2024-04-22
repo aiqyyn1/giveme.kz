@@ -10,7 +10,7 @@ const SubPhoto = () => {
     <div>
       <div className="relative">
         <Image src={subphoto} className='w-full'></Image>
-        <div className="absolute top-0 left-0 text-center right-0 bottom-0 flex flex-col items-center mt-20 text-white font-bold">
+        <div className="absolute top-0 left-0 text-center right-0 bottom-0 flex flex-col items-center mt-20 text-white  leading-5 font-r">
           <span className="text-[44px]">Our Partners</span>
           <div className="flex flex-col gap-4 text-lg mt-4">
             <span>
