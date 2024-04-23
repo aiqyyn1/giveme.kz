@@ -8,7 +8,7 @@ import { setCategories } from '../lib/slice';
 import { useGetItemsQuery } from '../api/api';
 import classNames from 'classnames';
 import Order from '../../../entities/order/ui/Order';
-
+import Timer from './Timer';
 function Items() {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -52,6 +52,7 @@ function Items() {
   return (
     <div className="flex flex-col ml-36 mt-20 gap-4">
       <span className="font-bold text-3xl font-DM">Choose what you need</span>
+      <Timer />
       <span className="text-xl font-DM">Attention! You can take one item per 48 hours</span>
       <div className="flex w-[280px] gap-2 text-center">
         <Link
