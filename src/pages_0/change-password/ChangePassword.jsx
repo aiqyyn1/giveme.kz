@@ -89,18 +89,23 @@ const ChangePassword = () => {
           text="Congratulations, you have successfully changed your password"
           onClose={() => setModalOpenSuccess(false)}
         >
-          <div className='flex justify-center flex-col items-center gap-6'>
-          <Image src={right}></Image>
-          <p className="text-lg font-semibold text-[22px] text-green_color">
-            Congratulations, you have <br/> successfully changed your <br/>password
-          </p>
+          <div className="flex justify-center flex-col items-center gap-6">
+            <Image src={right} className='mt-2'></Image>
+            <p className="text-lg font-semibold text-[22px] text-green_color">
+              Congratulations, you have <br /> successfully changed your <br />
+              password
+            </p>
           </div>
         </Modal>
       )}
       {isModalOpenFailed && (
-        <Modal isOpen={isModalOpenFailed} onClose={() => setModalOpenFailed(false)}>
+        <Modal
+          isOpen={isModalOpenFailed}
+          text="Try again. Something went wrong."
+          onClose={() => setModalOpenFailed(false)}
+        >
           <div className="flex justify-center flex-col items-center gap-6">
-            <Image src={wrong}></Image>
+            <Image src={wrong} className="mt-2"></Image>
             <p className="text-[22px] font-semibold text-red_button">
               Try again. Something went wrong.
             </p>

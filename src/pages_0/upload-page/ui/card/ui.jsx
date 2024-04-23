@@ -8,11 +8,17 @@ import { useCreateItemMutation } from '../../api/api';
 import { data } from '../../../../shared/data/data';
 import { useHandleClickActive } from '../../../../shared/utils/functions';
 import FormUpload from '../../../../shared/form-upload/FormUpload';
+import Modal from '../../../../shared/modal/Modal';
+import Image from 'next/image';
+import right from '../../../../../public/assets/right.svg';
+import wrong from '../../../../../public/assets/wrong.svg';
 const Card = () => {
   const createItemState = useSelector((state) => state.uploadText);
-  
+
   const handleClickActive = useHandleClickActive();
   const [postCreate] = useCreateItemMutation();
+  const [isRight, setIsRight] = useState(false);
+  const [isWrong, setIsWrong] = useState(false);
   const dispatch = useDispatch();
   const [data1, setData] = useState({
     contact_phone_number: '',
@@ -49,13 +55,19 @@ const Card = () => {
     formData.append('contact_address', data1.contact_address);
     try {
       const response = await postCreate(formData).unwrap();
-  
+      console.log('frefer', response)
+      if (response.success === true) {
+        setIsRight(true);
+        return
+      }
+     
+    
     } catch (e) {
       console.log(e);
+      setIsWrong(true)
     }
   };
-
-
+  console.log(isWrong);
   return (
     <div>
       <div className="mt-24 ml-36">
@@ -95,6 +107,27 @@ const Card = () => {
           />
         </div>
       </div>
+      {isRight && (
+        <Modal isOpen={isRight} text="Congratulations" onClose={() => setIsRight(false)}>
+          <div className="flex justify-center flex-col items-center gap-6">
+            <Image src={right} className="mt-2"></Image>
+            <p className="text-lg font-semibold text-[22px] text-green_color">
+              Congratulations, you have <br /> successfully shipped <br /> your item. Moderators are{' '}
+              <br /> reviewing this request. The process will take up to 15 <br /> minutes.
+            </p>
+          </div>
+        </Modal>
+      )}
+      {isWrong && (
+        <Modal isOpen={isWrong} text="Try" onClose={() => setIsWrong(false)}>
+          <div className="flex justify-center flex-col items-center gap-6">
+            <Image src={wrong} className="mt-2"></Image>
+            <p className="text-lg font-semibold text-[22px] text-red_button">
+              Try again. Something went wrong.
+            </p>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };
