@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 const SubCard = ({ text, image, onClick, isActive, activeImage }) => {
   const [backgroundBlack, setBackgroundBlack] = useState(false);
   const dispatch = useDispatch();
-  const backgroundBlackClass = classNames('w-[328px] h-[191px]', {
+  const backgroundBlackClass = classNames('w-[328px] rounded-lg h-[191px]', {
     'bg-white': !isActive,
     'bg-black text-white': isActive,
   });

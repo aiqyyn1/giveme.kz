@@ -34,7 +34,7 @@ const FormForgotPassword = () => {
           <div className="mt-10">
             <Image src={logo} alt="logo" />
           </div>
-          <div className="flex gap-16 font-DM text-lg justify-center">
+          <div className="flex gap-16 text-lg justify-center">
             <Link href="/login">Войти</Link>
             <Link href="/register" className="border-b-4 border-black pb-1">
               Зарегистрироваться

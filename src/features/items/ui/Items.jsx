@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,7 +12,11 @@ import Order from '../../../entities/order/ui/Order';
 function Items() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const [activeCategories, setActiveCategories] = useState({ toys: false, clothes: false, shoes: false });
+  const [activeCategories, setActiveCategories] = useState({
+    toys: false,
+    clothes: false,
+    shoes: false,
+  });
   const [isModal, setIsModal] = useState(false);
   const [id, setId] = useState(null);
   const state = useSelector((state) => state.categories.categories);
@@ -22,7 +26,7 @@ function Items() {
 
   const handleCategoryClick = (category) => {
     dispatch(setCategories(category));
-    setActiveCategories(prev => ({ ...prev, [category]: !prev[category] }));
+    setActiveCategories((prev) => ({ ...prev, [category]: !prev[category] }));
   };
 
   useEffect(() => {
@@ -30,17 +34,11 @@ function Items() {
     router.push(`/items${queryParams ? `?${queryParams}` : ''}`);
   }, [state]);
 
-  const getButtonClass = (category) => classNames(
-    'border-2',
-    'h-8',
-    'rounded-lg',
-    'border-buttonColor',
-    'flex-grow',
-    {
+  const getButtonClass = (category) =>
+    classNames('border-2', 'h-8', 'rounded-lg', 'border-buttonColor', 'flex-grow', {
       'bg-buttonColor': activeCategories[category],
       'text-white': activeCategories[category],
-    }
-  );
+    });
 
   const handleClickModal = (id) => {
     setIsModal(true);
@@ -56,38 +54,51 @@ function Items() {
       <span className="font-bold text-3xl font-DM">Choose what you need</span>
       <span className="text-xl font-DM">Attention! You can take one item per 48 hours</span>
       <div className="flex w-[280px] gap-2 text-center">
-        <Link href="#" onClick={() => handleCategoryClick('toys')} className={getButtonClass('toys')}>
+        <Link
+          href="#"
+          onClick={() => handleCategoryClick('toys')}
+          className={getButtonClass('toys')}
+        >
           Toys
         </Link>
-        <Link href="#" onClick={() => handleCategoryClick('clothes')} className={getButtonClass('clothes')}>
+        <Link
+          href="#"
+          onClick={() => handleCategoryClick('clothes')}
+          className={getButtonClass('clothes')}
+        >
           Clothes
         </Link>
-        <Link href="#" onClick={() => handleCategoryClick('shoes')} className={getButtonClass('shoes')}>
+        <Link
+          href="#"
+          onClick={() => handleCategoryClick('shoes')}
+          className={getButtonClass('shoes')}
+        >
           Shoes
         </Link>
       </div>
       <div className="grid grid-cols-4 gap-8">
-        {itemsData && itemsData.map((item, index) => (
-          <div key={index} className="bg-white w-[245px] h-[400px]">
-            <Image
-              src={item.image}
-              width={240}
-              height={240}
-              alt={item.cat_name}
-              className="ml-3 mt-2 object-cover rounded-lg"
-              style={{ width: '90%', height: '65%', objectFit: 'cover' }}
-            />
-            <div className="flex justify-center font-inter font-bold mt-6">
-              <span>{item.cat_name}</span>
+        {itemsData &&
+          itemsData.map((item, index) => (
+            <div key={index} className="bg-white rounded-lg w-[240px] h-[400px]">
+              <Image
+                src={item.image}
+                width={240}
+                height={240}
+                alt={item.cat_name}
+                className="ml-3 mt-2 object-cover "
+                style={{ width: '90%', height: '65%', objectFit: 'cover' }}
+              />
+              <div className="flex justify-center font-inter font-bold mt-6">
+                <span>{item.cat_name}</span>
+              </div>
+              <button
+                onClick={() => handleClickModal(item.id)}
+                className="bg-buttonPink flex justify-center items-center mt-5 ml-2  w-[228px] h-[48px] rounded-lg text-white"
+              >
+                RECEIVE
+              </button>
             </div>
-            <button
-              onClick={() => handleClickModal(item.id)}
-              className="bg-buttonPink flex justify-center items-center mt-5 ml-2  w-[228px] h-[48px] rounded-lg text-white"
-            >
-              RECEIVE
-            </button>
-          </div>
-        ))}
+          ))}
       </div>
       {isModal && <Order id={id} onClose={onClose} />}
     </div>
