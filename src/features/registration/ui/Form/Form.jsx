@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 
 import Input from '../../../../shared/input/ui/ui';
@@ -10,9 +10,11 @@ import { useSelector } from 'react-redux';
 import { validationSchema } from '../../lib/validation';
 import logo from '../../../../../public/assets/givemeBlack.svg';
 import Link from 'next/link';
-
+import Modal from '../../../../shared/modal/Modal';
+import right from '../../../../../public/assets/right.svg';
 const FormForgotPassword = () => {
   const data = useSelector((state) => state.auth);
+  const [isRight, setIsRight] = useState(false);
   const [postRegister, { isLoading, isError }] = usePostRegisterMutation();
   const formik = useFormik({
     initialValues: data,
@@ -20,7 +22,7 @@ const FormForgotPassword = () => {
     onSubmit: async (values) => {
       try {
         const response = await postRegister(values);
-    
+        setIsRight(true);
       } catch (error) {
         console.log(error);
       }
@@ -109,6 +111,16 @@ const FormForgotPassword = () => {
           </div>
         </div>
       </form>
+      {isRight && (
+        <Modal isOpen={isRight} text="Congratulations" onClose={() => setIsRight(false)}>
+          <div className="flex justify-center flex-col items-center gap-6">
+            <Image src={right} className="mt-2"></Image>
+            <p className="text-lg font-semibold text-[22px] text-green_color">
+              You are successfully registred
+            </p>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

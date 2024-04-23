@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { setToken } from '../../lib/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
@@ -11,13 +11,14 @@ import logo from '../../../../../public/assets/givemeBlack.svg';
 import Link from 'next/link';
 import { usePostLoginMutation } from '../../api/api';
 import { useRouter } from 'next/navigation';
-
+import Modal from '../../../../shared/modal/Modal';
+import wrong from '../../../../../public/assets/wrong.svg'
 const Form = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.token);
   const [postLogin, { isError, isLoading, data }] = usePostLoginMutation();
   const router = useRouter();
-
+  const [isWrong, setIsWrong] = useState(false)
   const formik = useFormik({
     initialValues: {
       Email: '',
@@ -35,9 +36,11 @@ const Form = () => {
         router.push('/main');
       } catch (error) {
         console.log(error);
+        setIsWrong(true)
       }
     },
   });
+console.log(isWrong)
   return (
     <div className="flex justify-center items-center h-screen">
       <form className="bg-white w-[377px] h-[540.67px] rounded-lg" onSubmit={formik.handleSubmit}>
@@ -99,6 +102,16 @@ const Form = () => {
           </div>
         </div>
       </form>
+      {isWrong && (
+        <Modal isOpen={isWrong} text="Try" onClose={() => setIsWrong(false)}>
+          <div className="flex justify-center flex-col items-center gap-6">
+            <Image src={wrong} className="mt-2"></Image>
+            <p className="text-lg font-semibold text-[22px] text-red_button">
+              Try again. Something went wrong.
+            </p>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };
