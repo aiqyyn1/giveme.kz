@@ -4,9 +4,9 @@ import code from '../../../../../public/assets/code.svg';
 import Image from 'next/image';
 import Button from '../../../../shared/buttonPink/ButtonPink';
 import { PROFILE } from '../string';
+import { useSelector } from 'react-redux';
 const CopyCode = () => {
-  const textToCopy = '123456789';
-
+  const textToCopy = useSelector((state) => state.isLoading.text);
   const handleCopyClick = async () => {
     try {
       await navigator.clipboard.writeText(textToCopy);

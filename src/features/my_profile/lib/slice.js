@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isLoading: false,
-  needer_status:''
+  needer_status: '',
+  text: '',
 };
 
 const isLoadingSlice = createSlice({
@@ -11,12 +12,14 @@ const isLoadingSlice = createSlice({
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
-    setNeederStatus : (state, action) => {
-      state.needer_status = action.payload
-    }
-  
+    setNeederStatus: (state, action) => {
+      state.needer_status = action.payload;
+    },
+    setTextToCopy: (state, action) => {
+      state.text = action.payload;
+    },
   },
 });
 
-export const { setIsLoading, setNeederStatus} = isLoadingSlice.actions;
+export const { setIsLoading, setNeederStatus, setTextToCopy } = isLoadingSlice.actions;
 export default isLoadingSlice.reducer;
