@@ -6,12 +6,10 @@ import { useDispatch } from 'react-redux';
 import { setTextToCopy } from '../../lib/slice';
 const ProfileData = () => {
   const { data } = useGetProfileQuery();
-  console.log(data)
-  const textToCopy = '123456789';
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setNeederStatus(data?.needer_status));
-    dispatch(setTextToCopy(data?.bar_code))
+    dispatch(setTextToCopy(data?.bar_code));
   }, [data?.needer_status, data?.bar_code]);
   return (
     <div className="ml-8 mt-10 sm:ml-40">
@@ -30,6 +28,10 @@ const ProfileData = () => {
         <div className="flex gap-[160px]">
           <span>Code:</span>
           <span className="font-bold">{data?.bar_code}</span>
+        </div>
+        <div className="flex gap-[160px]">
+          <span>Bonuses:</span>
+          <span className="font-bold">{data?.bonus_count}</span>
         </div>
       </div>
     </div>

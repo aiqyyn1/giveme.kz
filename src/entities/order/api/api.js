@@ -16,6 +16,15 @@ export const orderApi = createApi({
         },
       }),
     }),
+    getMyOrders: builder.query({
+      query: () => ({
+        url: '/orders/my_orders',
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${Cookies.get('access')}`,
+        },
+      }),
+    }),
   }),
 });
-export const { usePostOrderMutation } = orderApi;
+export const { usePostOrderMutation, useGetMyOrdersQuery } = orderApi;

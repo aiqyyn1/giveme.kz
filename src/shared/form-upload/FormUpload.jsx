@@ -43,13 +43,13 @@ const FormUpload = ({
           </span>
           <input
             placeholder="Address"
-            className="h-12 bg-buttonColor rounded-lg p-4 w-4/5"
+            className="h-12 bg-buttonColor text-white rounded-lg p-4 w-4/5"
             name="contact_phone_number"
             onChange={handleDataChange}
           ></input>
           <input
             placeholder="Phone number"
-            className="h-12 bg-buttonColor rounded-lg p-4 w-4/5"
+            className="h-12 bg-buttonColor text-white rounded-lg p-4 w-4/5"
             name="contact_address"
             onChange={handleDataChange}
           ></input>
