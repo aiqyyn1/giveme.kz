@@ -10,7 +10,7 @@ function Timer() {
     const storedStartTime = localStorage.getItem('startTime');
 
 
-    if (storedStartTime && storedToken === currentToken) {
+    if (storedStartTime ) {
       const now = Math.floor(Date.now() / 1000);
       const elapsed = now - parseInt(storedStartTime, 10);
       const timeLeft = Math.max(initialTime - elapsed, 0);
