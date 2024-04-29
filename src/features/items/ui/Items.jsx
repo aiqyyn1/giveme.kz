@@ -12,12 +12,14 @@ import Timer from './Timer';
 function Items() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const status = useSelector((state) => state.categories.status);
   const [activeCategories, setActiveCategories] = useState({
     toys: false,
     clothes: false,
     shoes: false,
   });
   const [isModal, setIsModal] = useState(false);
+  const [isTimer, setIsTimer] = useState(false);
   const [id, setId] = useState(null);
   const state = useSelector((state) => state.categories.categories);
   const { data: itemsData, isFetching } = useGetItemsQuery(state, {
@@ -56,7 +58,7 @@ function Items() {
       <span className="text-xl font-DM">Attention! You can take one item per 48 hours</span>
       <div className="flex w-[280px] gap-2 text-center">
         <Link
-          href="#"
+          href=" #"
           onClick={() => handleCategoryClick('toys')}
           className={getButtonClass('toys')}
         >

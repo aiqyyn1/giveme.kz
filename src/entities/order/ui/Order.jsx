@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Input from '../../../shared/input/ui/ui';
 import Button from '../../../shared/button/ui/ui';
 import { useFormik } from 'formik';
 import { validationSchema } from '../lib/validation';
 import { usePostOrderMutation } from '../api/api';
-
+import { setStatus } from '../../../features/items/lib/slice';
+import { useDispatch } from 'react-redux';
 const Order = ({ id, onClose }) => {
-  const [postOrder] = usePostOrderMutation();
+  const [postOrder, { status, isSuccess }] = usePostOrderMutation();
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: { contact_name: '', phone_number: '', city: '', address: '', item_id: id },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        await postOrder(values);
+        const res = await postOrder(values);
+  
+        if (res.data.success) {
+          dispatch(setStatus(true))
+        }
         if (onClose) onClose();
       } catch (error) {
         console.log(error);

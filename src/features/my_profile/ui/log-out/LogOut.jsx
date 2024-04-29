@@ -1,7 +1,10 @@
 import React from 'react';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 const LogOut = () => {
+  const router = useRouter();
   const handleDeleteToken = () => {
+    router.push('/login');
     Cookies.remove('access');
   };
   return (

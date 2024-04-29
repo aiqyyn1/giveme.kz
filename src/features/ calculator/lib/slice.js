@@ -15,11 +15,11 @@ const calculatorSlice = createSlice({
     setSum: (state, action) => {
       const { weight, text } = action.payload;
       if (text === 'CLOTHES') {
-        state.sum = parseInt(weight) * 1800;
+        state.sum = parseInt(weight) * 0.18;
       } else if (text === 'SHOES') {
-        state.sum = parseInt(weight) * 1900;
+        state.sum = parseInt(weight) * 0.19;
       } else if (text === 'TOYS') {
-        state.sum = parseInt(weight) * 1700;
+        state.sum = parseInt(weight) * 0.17;
       }
     },
   },
