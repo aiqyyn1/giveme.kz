@@ -90,7 +90,7 @@ const ChangePassword = () => {
           onClose={() => setModalOpenSuccess(false)}
         >
           <div className="flex justify-center flex-col items-center gap-6">
-            <Image src={right} className='mt-2'></Image>
+            <Image src={right} className='mt-2 '></Image>
             <p className="text-lg font-semibold text-[22px] text-green_color">
               Congratulations, you have <br /> successfully changed your <br />
               password

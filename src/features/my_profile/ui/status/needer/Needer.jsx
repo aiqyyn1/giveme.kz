@@ -17,8 +17,7 @@ const Needer = () => {
     formdata.append('user_photo', files[2]);
 
     try {
-      const response = await postFiles(formdata);
-    
+      await postFiles(formdata);
     } catch (e) {
       console.log(e);
     }

@@ -21,9 +21,8 @@ function Timer() {
       }
       return timeLeft;
     } else {
-      // Reset the timer if it's a different token or no token is stored
       localStorage.setItem('startTime', Math.floor(Date.now() / 1000).toString());
-      localStorage.setItem('timerToken', currentToken);
+
       return initialTime;
     }
   };
