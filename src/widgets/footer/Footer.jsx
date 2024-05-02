@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../../public/assets/givemeLogo.svg';
 import Image from 'next/image';
 import Link from 'next/link';
-import {router} from '../../shared/config/route-map'
+import { router } from '../../shared/config/route-map';
 const Footer = () => {
   return (
     <div className="bg-buttonColor ">
@@ -24,10 +24,20 @@ const Footer = () => {
           <span>Almaty, Al-Farabi 132b</span>
         </div>
         <div className="flex flex-col text-lg text-white gap-2">
-          <span>instagram</span>
-          <span>telegram</span>
-          <span>youtube</span>
-          <span>vk</span>
+          <Link
+            href="https://www.instagram.com/givemekz/
+"
+          >
+            instagram
+          </Link>
+          <Link
+            href="https://t.me/givemekz
+"
+          >
+            telegram
+          </Link>
+          <Link href=" https://www.youtube.com/channel/">youtube</Link>
+          <Link href="https://vk.com/giveme_kz">vk</Link>
         </div>
       </div>
     </div>
