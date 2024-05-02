@@ -7,21 +7,14 @@ function Timer() {
   const router = useRouter();
 
   const getInitialTimeLeft = () => {
-    const storedStartTime = localStorage.getItem('startTime');
-
-
-    if (storedStartTime ) {
+    if (storedStartTime) {
       const now = Math.floor(Date.now() / 1000);
       const elapsed = now - parseInt(storedStartTime, 10);
       const timeLeft = Math.max(initialTime - elapsed, 0);
       if (timeLeft === 0) {
-        localStorage.removeItem('startTime');
-        localStorage.removeItem('timerToken');
         router.push('/main');
       }
       return timeLeft;
-    } else {
-      localStorage.setItem('startTime', Math.floor(Date.now() / 1000).toString());
 
       return initialTime;
     }
@@ -39,8 +32,7 @@ function Timer() {
         const newTimeLeft = prevTime - 1;
         if (newTimeLeft === 0) {
           clearInterval(intervalId);
-          localStorage.removeItem('startTime');
-          localStorage.removeItem('timerToken');
+
           router.push('/main');
         }
         return newTimeLeft;
