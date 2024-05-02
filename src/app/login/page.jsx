@@ -3,7 +3,7 @@ import Login from '../../features/login/Login';
 
 export default function page() {
   return (
-    <div>
+    <div className='font-DM'>
       <Login />
     </div>
   );

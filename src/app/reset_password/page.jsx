@@ -3,7 +3,7 @@ import ResetPass from '../../features/reset-password/ResetPass';
 
 export default function page() {
   return (
-    <div>
+    <div className='font-DM'>
       <ResetPass />
     </div>
   );

@@ -4,7 +4,7 @@ import Footer from '../../../widgets/footer/Footer'
 
 export default function Layout({children}) {
   return (
-    <div>
+    <div className='font-DM'>
       <Navbar/>
       {children}
       <Footer/>

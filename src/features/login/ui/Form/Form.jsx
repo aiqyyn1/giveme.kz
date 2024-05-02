@@ -12,13 +12,13 @@ import Link from 'next/link';
 import { usePostLoginMutation } from '../../api/api';
 import { useRouter } from 'next/navigation';
 import Modal from '../../../../shared/modal/Modal';
-import wrong from '../../../../../public/assets/wrong.svg'
+import wrong from '../../../../../public/assets/wrong.svg';
 const Form = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.token);
   const [postLogin, { isError, isLoading, data }] = usePostLoginMutation();
   const router = useRouter();
-  const [isWrong, setIsWrong] = useState(false)
+  const [isWrong, setIsWrong] = useState(false);
   const formik = useFormik({
     initialValues: {
       Email: '',
@@ -36,11 +36,11 @@ const Form = () => {
         router.push('/main');
       } catch (error) {
         console.log(error);
-        setIsWrong(true)
+        setIsWrong(true);
       }
     },
   });
-console.log(isWrong)
+  console.log(isWrong);
   return (
     <div className="flex justify-center items-center h-screen">
       <form className="bg-white w-[377px] h-[540.67px] rounded-lg" onSubmit={formik.handleSubmit}>
@@ -50,10 +50,10 @@ console.log(isWrong)
           </div>
           <div className="flex gap-10 font-DM text-lg justify-center">
             <Link href="/login" className="border-b-4 border-black w-40 text-center">
-              Войти
+              Sign In
             </Link>
             <Link href="/register" className="">
-              Зарегистрироваться
+              Register
             </Link>
           </div>
         </div>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { router } from '../../shared/config/route-map';
 const Footer = () => {
   return (
-    <div className="bg-buttonColor ">
+    <div className="bg-buttonColor font-DM">
       <div className="flex justify-around w-11/12 items-center pt-16 pb-16">
         <div>
           <Image src={logo} alt="" width={204} height={144}></Image>
