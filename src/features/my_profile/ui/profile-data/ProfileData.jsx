@@ -14,7 +14,7 @@ const ProfileData = () => {
   return (
     <div className="ml-8 mt-10 sm:ml-40">
       <div className="text-xl flex flex-col gap-7">
-        <div className="flex gap-8">
+        <div className="flex gap-12">
           <span>Name and Surname:</span>
           <span className="font-bold">
             {data?.name} {data?.surname}
@@ -25,11 +25,11 @@ const ProfileData = () => {
           <span>Mail:</span>
           <span className="font-bold">{data?.email}</span>
         </div>
-        <div className="flex gap-[160px]">
+        <div className="flex gap-[165px]">
           <span>Code:</span>
           <span className="font-bold">{data?.bar_code}</span>
         </div>
-        <div className="flex gap-[160px]">
+        <div className="flex gap-[140px]">
           <span>Bonuses:</span>
           <span className="font-bold">{data?.bonus_count}</span>
         </div>
