@@ -39,7 +39,7 @@ function Items() {
   }, [state]);
 
   const getButtonClass = (category) =>
-    classNames('border-2', 'h-8', 'rounded-lg', 'border-buttonColor', 'flex-grow', {
+    classNames('border-2', 'p-2', 'text-center', 'rounded-lg', 'border-buttonColor', 'flex-grow', {
       'bg-buttonColor': activeCategories[category],
       'text-white': activeCategories[category],
     });
@@ -58,7 +58,8 @@ function Items() {
       <span className="font-bold text-3xl font-DM">Choose what you need</span>
       {status && <Timer />}
 
-      <div className="flex w-[280px] gap-2 text-center">
+      <div className="flex w-[280px] gap-2  ">
+       
         <Link
           href=" #"
           onClick={() => handleCategoryClick('toys')}
