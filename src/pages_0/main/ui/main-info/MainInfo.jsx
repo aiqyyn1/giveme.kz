@@ -45,13 +45,13 @@ const MainInfo = ({ text, isRightAligned, title, buttonText, image }) => {
             )}
           </div>
           <div>
-            <Image src={image} alt="" />
+            <Image src={image} alt="" className='rounded-lg' />
           </div>
         </div>
       ) : (
         <div className={isLeftAligned}>
           <div>
-            <Image src={image} alt="" />
+            <Image src={image} alt="" className='rounded-lg'/>
           </div>
           <div className="flex flex-col gap-6">
             <span className="text-[32px] font-bold">{title}</span>

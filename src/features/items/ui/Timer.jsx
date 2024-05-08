@@ -1,63 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setTimer } from '../lib/slice'; // Ensure this is the correct import path
 
-function Timer() {
-  const initialTime = 48 * 60 * 60; // 48 hours in seconds
-  const router = useRouter();
-
-  const getInitialTimeLeft = () => {
-    if (storedStartTime) {
-      const now = Math.floor(Date.now() / 1000);
-      const elapsed = now - parseInt(storedStartTime, 10);
-      const timeLeft = Math.max(initialTime - elapsed, 0);
-      if (timeLeft === 0) {
-        router.push('/main');
-      }
-      return timeLeft;
-
-      return initialTime;
+const CountdownTimer = () => {
+  const duration = 48 * 60 * 60 * 1000; // 48 hours in milliseconds
+  const dispatch = useDispatch();
+  const [endTime, setEndTime] = useState(() => {
+    const storedEndTime = localStorage.getItem('endTime');
+    if (storedEndTime) {
+      return new Date(parseInt(storedEndTime, 10));
+    } else {
+      const newEndTime = new Date().getTime() + duration;
+      localStorage.setItem('endTime', newEndTime.toString());
+      return new Date(newEndTime);
     }
-  };
+  });
 
-  const [timeLeft, setTimeLeft] = useState(getInitialTimeLeft());
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const now = new Date();
+    const difference = endTime - now;
+    return Math.max(difference, 0);
+  });
 
   useEffect(() => {
-    if (timeLeft === 0) {
-      return;
-    }
-
-    const intervalId = setInterval(() => {
-      setTimeLeft((prevTime) => {
-        const newTimeLeft = prevTime - 1;
-        if (newTimeLeft === 0) {
-          clearInterval(intervalId);
-
-          router.push('/main');
-        }
-        return newTimeLeft;
-      });
+    const timer = setInterval(() => {
+      const now = new Date();
+      const difference = endTime - now;
+      if (difference > 0) {
+        setTimeLeft(difference);
+        dispatch(setTimer(difference)); // Dispatch the time left to the Redux store
+      } else {
+        clearInterval(timer);
+        setTimeLeft(0);
+        dispatch(setTimer(0)); // Dispatch that the timer has ended
+      }
     }, 1000);
 
-    return () => clearInterval(intervalId);
-  }, [timeLeft, router]);
+    // Cleanup the interval on component unmount
+    return () => {
+      clearInterval(timer);
+      dispatch(setTimer(0)); // Ensure cleanup dispatch when component unmounts
+    };
+  }, [endTime, dispatch]);
 
-  const formatTime = () => {
-    let seconds = timeLeft % 60;
-    let minutes = Math.floor(timeLeft / 60) % 60;
-    let hours = Math.floor(timeLeft / 3600);
+  // Format the time left into days, hours, minutes, and seconds
+  const formatTimeLeft = (time) => {
+    let seconds = Math.floor((time / 1000) % 60);
+    let minutes = Math.floor((time / (1000 * 60)) % 60);
+    let hours = Math.floor(time / (1000 * 60 * 60)); // No more modulo 24 here
+    let days = Math.floor(time / (1000 * 60 * 60 * 24));
 
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds
-      .toString()
-      .padStart(2, '0')}`;
+    seconds = ('0' + seconds).slice(-2);
+    minutes = ('0' + minutes).slice(-2);
+    hours = ('0' + hours).slice(-2); // Keep leading zero for formatting
+
+    return `${hours}:${minutes}:${seconds}`;
   };
 
   return (
     <div className="flex gap-2">
-      <span className="bg-red_button text-white text-xl pl-2 pr-2 rounded-lg">{formatTime()}</span>
+      <span className="bg-red_button text-white text-xl pl-2 pr-2 rounded-lg">
+        {formatTimeLeft(timeLeft)}
+      </span>
       <span className="text-black text-xl">Attention! You can take one item per 48 hours</span>
     </div>
   );
-}
+};
 
-export default Timer;
+export default CountdownTimer;

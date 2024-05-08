@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   categories: [],
   status: false,
+  timer: 0,
 };
 
 const categoriesSlice = createSlice({
@@ -23,8 +24,11 @@ const categoriesSlice = createSlice({
     setStatus: (state, action) => {
       state.status = action.payload;
     },
+    setTimer: (state, action) => {
+      state.timer = action.payload;
+    },
   },
 });
 
-export const { setCategories, setStatus } = categoriesSlice.actions;
+export const { setCategories, setStatus, setTimer } = categoriesSlice.actions;
 export default categoriesSlice.reducer;
