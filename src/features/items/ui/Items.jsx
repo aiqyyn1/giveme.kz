@@ -56,10 +56,9 @@ function Items() {
   return (
     <div className="flex flex-col ml-36 mt-20 gap-4">
       <span className="font-bold text-3xl font-DM">Choose what you need</span>
-      {status && <Timer />}
+      {(status || localStorage.getItem('endTime')) && <Timer />}
 
       <div className="flex w-[280px] gap-2  ">
-       
         <Link
           href=" #"
           onClick={() => handleCategoryClick('toys')}
