@@ -32,7 +32,6 @@ const CountdownTimer = () => {
         setTimeLeft(difference);
         dispatch(setTimer(difference)); // Dispatch the time left to the Redux store
       } else {
-        // Reset the timer when it reaches zero
         const newEndTime = new Date().getTime() + duration;
         localStorage.setItem('endTime', newEndTime.toString());
         setEndTime(new Date(newEndTime));
@@ -52,14 +51,14 @@ const CountdownTimer = () => {
   const formatTimeLeft = (time) => {
     let seconds = Math.floor((time / 1000) % 60);
     let minutes = Math.floor((time / (1000 * 60)) % 60);
-    let hours = Math.floor((time / (1000 * 60 * 60)) % 24); // Use modulo 24 for hours within a day
+    let hours = Math.floor((time / (1000 * 60 * 60)) % 48); // Use modulo 24 for hours within a day
     let days = Math.floor(time / (1000 * 60 * 60 * 24));
 
     seconds = ('0' + seconds).slice(-2);
     minutes = ('0' + minutes).slice(-2);
     hours = ('0' + hours).slice(-2); // Keep leading zero for formatting
 
-    return `${days > 0 ? `${days}d ` : ''}${hours}:${minutes}:${seconds}`;
+    return `${hours}:${minutes}:${seconds}`;
   };
 
   return (

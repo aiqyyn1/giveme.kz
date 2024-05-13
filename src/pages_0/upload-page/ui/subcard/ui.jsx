@@ -10,7 +10,7 @@ const SubCard = ({ text, image, onClick, isActive, activeImage }) => {
   const dispatch = useDispatch();
   const backgroundBlackClass = classNames('w-[328px] rounded-lg h-[191px]', {
     'bg-white': !isActive,
-    'bg-black text-white': isActive,
+    'bg-buttonColor text-white': isActive,
   });
 
   const handleClick = () => {

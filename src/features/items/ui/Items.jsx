@@ -21,7 +21,7 @@ function Items() {
     shoes: false,
   });
   const [isModal, setIsModal] = useState(false);
-  const [isTimer, setIsTimer] = useState(false);
+  const [timerLocal, setTimer] = useState('');
   const [id, setId] = useState(null);
   const state = useSelector((state) => state.categories.categories);
   const { data: itemsData, isFetching } = useGetItemsQuery(state, {
@@ -37,9 +37,12 @@ function Items() {
     const queryParams = state.map((cat) => `cat=${cat}`).join('&');
     router.push(`/items${queryParams ? `?${queryParams}` : ''}`);
   }, [state]);
-
+  useEffect(() => {
+   const timer =  localStorage.getItem('endTime');
+   setTimer(timer)
+  }, []);
   const getButtonClass = (category) =>
-    classNames('border-2', 'p-2', 'text-center', 'rounded-lg', 'border-buttonColor', 'flex-grow', {
+    classNames('border-2', 'p-2',  'text-center', 'rounded-lg', 'border-buttonColor', 'flex-grow', {
       'bg-buttonColor': activeCategories[category],
       'text-white': activeCategories[category],
     });
@@ -56,7 +59,7 @@ function Items() {
   return (
     <div className="flex flex-col ml-36 mt-20 gap-4">
       <span className="font-bold text-3xl font-DM">Choose what you need</span>
-      {(status || localStorage.getItem('endTime')) && <Timer />}
+      {(status || timerLocal) && <Timer />}
 
       <div className="flex w-[280px] gap-2  ">
         <Link
@@ -64,21 +67,21 @@ function Items() {
           onClick={() => handleCategoryClick('toys')}
           className={getButtonClass('toys')}
         >
-          Toys
+          TOYS
         </Link>
         <Link
           href="#"
           onClick={() => handleCategoryClick('clothes')}
           className={getButtonClass('clothes')}
         >
-          Clothes
+          CLOTHES
         </Link>
         <Link
           href="#"
           onClick={() => handleCategoryClick('shoes')}
           className={getButtonClass('shoes')}
         >
-          Shoes
+          SHOES
         </Link>
       </div>
       <div className="grid grid-cols-4 gap-8">

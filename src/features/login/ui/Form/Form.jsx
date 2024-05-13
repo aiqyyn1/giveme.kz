@@ -40,7 +40,6 @@ const Form = () => {
       }
     },
   });
-  console.log(isWrong);
   return (
     <div className="flex justify-center items-center h-screen">
       <form className="bg-white w-[377px] h-[540.67px] rounded-lg" onSubmit={formik.handleSubmit}>
@@ -88,16 +87,15 @@ const Form = () => {
           </div>
           <div>
             <Link href="/forgot-password" className="text-xl font-bold">
-              Забыли пароль?
+              Forgot Password ?
             </Link>
           </div>
           <div>
             <Button text="Войти" />
           </div>
-          <div className="font-inter text-sm">
-            <span>
-              При входе вы соглашаетесь с нашими  <span className="font-bold">Условия </span> <br />{' '}
-              <span className="font-bold">использования</span>
+          <div className="font-inter text-sm text-center">
+            <span className=''>
+              By logging in you agree to our <span className="font-bold "> Terms of Use. </span>{' '}
             </span>
           </div>
         </div>
