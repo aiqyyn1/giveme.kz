@@ -24,7 +24,7 @@ const FormUpload = ({
         </div>
       </label>
       {file && (
-        <div className="bg-black w-96 mt-5 h-10 text-center rounded-lg text-white">{file}</div>
+        <div className="bg-buttonColor w-96 mt-5 h-10 text-center rounded-lg text-white">{file}</div>
       )}
       <div>
         <button
@@ -55,7 +55,7 @@ const FormUpload = ({
           ></input>
         </div>
       )}
-      <button type="submit" className="bg-buttonPink mt-8 mb-36 w-4/5 h-14 text-white rounded-lg">
+      <button type="submit" className="bg-buttonPink mt-8 mb-10 w-4/5 h-14 text-white rounded-lg">
         {text}
       </button>
     </form>

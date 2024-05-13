@@ -40,11 +40,19 @@ const Needer = () => {
           <span dangerouslySetInnerHTML={{ __html: PROFILE.photos_sub }} className="ml-2"></span>
         </div>
       </div>
+
       <FormUpload
         text="VERIFICATE"
         handleOnSubmit={handleOnSubmit}
         handleFileChange={handleFileChange}
       />
+      <div  className="flex flex-col gap-4">
+        {files.map((item, index) => (
+          <div key={index} className="bg-buttonColor p-2 text-white w-4/5 rounded-lg ">
+            {index + 1} {item.name}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
