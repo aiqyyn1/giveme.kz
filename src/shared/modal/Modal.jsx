@@ -18,7 +18,7 @@ const Modal = ({ isOpen, onClose, children, text }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-white p-4  text-center flex flex-col justify-center items-center  gap-6 rounded-md shadow-lg max-w-sm mx-auto">
-        <div>{children}</div>
+        <div className='mt-2'>{children}</div>
         <button onClick={onClose} className={childrenClassname}>
           Back
         </button>
