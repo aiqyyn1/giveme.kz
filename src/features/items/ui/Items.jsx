@@ -38,11 +38,11 @@ function Items() {
     router.push(`/items${queryParams ? `?${queryParams}` : ''}`);
   }, [state]);
   useEffect(() => {
-   const timer =  localStorage.getItem('endTime');
-   setTimer(timer)
+    const timer = localStorage.getItem('endTime');
+    setTimer(timer);
   }, []);
   const getButtonClass = (category) =>
-    classNames('border-2', 'p-2',  'text-center', 'rounded-lg', 'border-buttonColor', 'flex-grow', {
+    classNames('border-2', 'p-2', 'text-center', 'rounded-lg', 'border-buttonColor', 'flex-grow', {
       'bg-buttonColor': activeCategories[category],
       'text-white': activeCategories[category],
     });
@@ -59,7 +59,6 @@ function Items() {
   return (
     <div className="flex flex-col ml-36 mt-20 gap-4">
       <span className="font-bold text-3xl font-DM">Choose what you need</span>
-      {(status || timerLocal) && <Timer />}
 
       <div className="flex w-[280px] gap-2  ">
         <Link
@@ -101,7 +100,6 @@ function Items() {
               </div>
               <button
                 onClick={() => handleClickModal(item.id)}
-                disabled={timer === 0 ? false : true}
                 className="bg-buttonPink flex justify-center items-center mt-5 ml-2  w-[228px] h-[48px] rounded-lg text-white"
               >
                 RECEIVE
