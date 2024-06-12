@@ -20,13 +20,13 @@ const MyOrders = () => {
           });
           return (
             <div key={index} className="w-4/5 bg-buttonColor h-[132px] rounded-lg">
-              <div className="flex gap-6 ml-20 items-center">
+              <div className="flex gap-6 ml-14 items-center">
                 <div className=" w-[100px] h-[100px]">
                   <Image
                     src={item.item.image}
                     alt=""
-                    layout="fill"
-                    objectFit="cover"
+                    width={400}
+                    height={400}
                     className="rounded-lg mt-10"
                   />
                 </div>
