@@ -1,5 +1,5 @@
 'use client';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { CARD_TEXT } from './string';
 import SubCard from '../subcard/ui';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,18 +24,24 @@ const Card = memo(() => {
     contact_phone_number: '',
     contact_address: '',
   });
-  const handleDataChange = (event) => {
-    const { name, value } = event.target;
-    setData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
+  const handleDataChange = useCallback(
+    (event) => {
+      const { name, value } = event.target;
+      setData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    },
+    [data]
+  );
+  const handleFileChange = useCallback(
+    (event) => {
+      const file = event.target.files[0];
 
-    dispatch(setSelectedFile(file));
-  };
+      dispatch(setSelectedFile(file));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     if (createItemState.text === 'CLOTHES') {
@@ -46,25 +52,37 @@ const Card = memo(() => {
       dispatch(setCategoryId(3));
     }
   }, [createItemState.text]);
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
-    let formData = new FormData();
-    formData.append('item_file', createItemState.selectedFile);
-    formData.append('category_id', createItemState.categoryId);
-    formData.append('contact_phone_number', data1.contact_phone_number);
-    formData.append('contact_address', data1.contact_address);
-    try {
-      const response = await postCreate(formData).unwrap();
-      console.log('frefer', response);
-      if (response.success === true) {
-        setIsRight(true);
-        return;
+  const handleOnSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      let formData = new FormData();
+      formData.append('item_file', createItemState.selectedFile);
+      formData.append('category_id', createItemState.categoryId);
+      formData.append('contact_phone_number', data1.contact_phone_number);
+      formData.append('contact_address', data1.contact_address);
+
+      try {
+        const response = await postCreate(formData).unwrap();
+        if (response.success === true) {
+          setIsRight(true);
+          return;
+        }
+      } catch (e) {
+        console.log(e);
+        setIsWrong(true);
       }
-    } catch (e) {
-      console.log(e);
-      setIsWrong(true);
-    }
-  };
+    },
+    [
+      postCreate,
+      createItemState.selectedFile,
+      createItemState.categoryId,
+      data1.contact_phone_number,
+      data1.contact_address,
+    ]
+  );
+  const resetSelectedFile = useCallback(() => {
+    dispatch(setSelectedFile(null));
+  }, [dispatch]);
   return (
     <div>
       <div className="mt-24 ml-36">
@@ -96,7 +114,7 @@ const Card = memo(() => {
           </div>
           <FormUpload
             text="SEND"
-            onClick={() => dispatch(setSelectedFile(null))}
+            onClick={resetSelectedFile}
             handleFileChange={handleFileChange}
             handleOnSubmit={handleOnSubmit}
             handleDataChange={handleDataChange}

@@ -1,23 +1,26 @@
 'use client';
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { data } from '../../../shared/data/data';
 import { setWeight, setSum } from '../lib/slice';
 import { useSelector, useDispatch } from 'react-redux';
 import { SubCard } from '../../../pages_0/upload-page/ui';
 import { useHandleClickActive } from '../../../shared/utils/functions';
 import { CALCULATOR } from './string';
-const Calculator = () => {
+const Calculator = memo(() => {
   const handleClickActive = useHandleClickActive();
   const dispatch = useDispatch();
   const isActive = useSelector((state) => state.uploadText.isActive);
   const calculatorState = useSelector((state) => state.calculator);
   const createItemState = useSelector((state) => state.uploadText.text);
-  const handleChangeWeight = (e) => {
-    dispatch(setWeight(e.target.value));
-  };
-  const handleCalculate = () => {
+  const handleChangeWeight = useCallback(
+    (e) => {
+      dispatch(setWeight(e.target.value));
+    },
+    [calculatorState.weight]
+  );
+  const handleCalculate = useCallback(() => {
     dispatch(setSum({ weight: calculatorState.weight, text: createItemState }));
-  };
+  }, [calculatorState.weight, createItemState]);
 
   return (
     <div className="mt-24 ml-40">
@@ -62,6 +65,6 @@ const Calculator = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Calculator;
