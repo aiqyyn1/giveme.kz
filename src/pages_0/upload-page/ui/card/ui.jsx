@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { CARD_TEXT } from './string';
 import SubCard from '../subcard/ui';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ import Modal from '../../../../shared/modal/Modal';
 import Image from 'next/image';
 import right from '../../../../../public/assets/right.svg';
 import wrong from '../../../../../public/assets/wrong.svg';
-const Card = () => {
+const Card = memo(() => {
   const createItemState = useSelector((state) => state.uploadText);
 
   const handleClickActive = useHandleClickActive();
@@ -55,19 +55,16 @@ const Card = () => {
     formData.append('contact_address', data1.contact_address);
     try {
       const response = await postCreate(formData).unwrap();
-      console.log('frefer', response)
+      console.log('frefer', response);
       if (response.success === true) {
         setIsRight(true);
-        return
+        return;
       }
-     
-    
     } catch (e) {
       console.log(e);
-      setIsWrong(true)
+      setIsWrong(true);
     }
   };
-  console.log(isWrong);
   return (
     <div>
       <div className="mt-24 ml-36">
@@ -130,5 +127,5 @@ const Card = () => {
       )}
     </div>
   );
-};
+});
 export default Card;
