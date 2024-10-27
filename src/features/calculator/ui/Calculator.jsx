@@ -66,5 +66,5 @@ const Calculator = memo(() => {
     </div>
   );
 });
-
+Calculator.displayName = 'Calculator'
 export default Calculator;
