@@ -3,7 +3,7 @@ import authreg from '../features/registration/lib/slice';
 import token from '../features/login/lib/slice';
 import categories from '../features/items/lib/slice';
 import uploadText from '../pages_0/upload-page/lib/slices';
-import calculator from '../features/ calculator/lib/slice';
+import calculator from '../features/calculator/lib/slice';
 import { authApi } from '../features/registration/api/api';
 import { authApiLogin } from '../features/login/api/api';
 import { authForgot } from '../pages_0/forget-password/api/api';
