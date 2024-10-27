@@ -59,5 +59,5 @@ const FormUpload = memo(
     );
   }
 );
-
+FormUpload.displayName = 'FormUpload'
 export default FormUpload;

@@ -30,5 +30,5 @@ const SubCard = memo(({ text, image, onClick, isActive, activeImage }) => {
     </div>
   );
 });
-
+SubCard.displayName = 'SubCard'
 export default SubCard;

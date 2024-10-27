@@ -24,4 +24,5 @@ const Modal = memo(({ isOpen, onClose, children, text }) => {
     </div>
   );
 });
+Modal.displayName = 'Modal'
 export default Modal;

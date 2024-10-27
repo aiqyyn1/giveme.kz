@@ -146,4 +146,6 @@ const Card = memo(() => {
     </div>
   );
 });
+
+Card.displayName = 'Card';
 export default Card;
