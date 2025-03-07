@@ -9,6 +9,7 @@ import { router } from '../../shared/config/route-map';
 
 const Navbar = () => {
   const { data } = useGetProfileQuery();
+  console.log(data, 'data')
   const activePathname = usePathname();
 
   const isActive = (pathname) => pathname === activePathname;
@@ -39,7 +40,7 @@ const Navbar = () => {
             </Link>
             {data ? (
               <Link href={router.profile}>
-                <span className={`bg-buttonPink rounded-lg pl-2 pr-2 ${linkStyle(router.profile)}`}>
+                <span className={`bg-buttonPink rounded-lg p-2 ${linkStyle(router.profile)}`}>
                   {data.name} {data.bonus_count}B
                 </span>
               </Link>

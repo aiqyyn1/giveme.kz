@@ -3,12 +3,12 @@ import Cookies from 'js-cookie';
 export const profileApi = createApi({
   reducerPath: 'profile',
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.baseURL,
+    baseUrl: 'https://givemekz-backend-production.up.railway.app',
   }),
   endpoints: (builder) => ({
     getProfile: builder.query({
       query: () => ({
-        url: '/me',
+        url: '/user/me',
         method: 'GET',
         headers: {
           Authorization: `Bearer ${Cookies.get('access')}`,

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const authReset = createApi({
   reducerPath: 'authReset',
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.baseURL,
+    baseUrl: 'https://givemekz-backend-production.up.railway.app'
   }),
   endpoints: (builder) => ({
     postReset: builder.mutation({

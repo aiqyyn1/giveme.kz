@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.baseURL,
+    baseUrl: 'https://givemekz-backend-production.up.railway.app',
   }),
   endpoints: (builder) => ({
     postRegister: builder.mutation({
@@ -14,4 +15,5 @@ export const authApi = createApi({
     }),
   }),
 });
+console.log(process.env.baseURL, 'process.env.baseURL')
 export const { usePostRegisterMutation } = authApi;

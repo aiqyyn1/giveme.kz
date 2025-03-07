@@ -10,7 +10,7 @@ export default function Page() {
     useEffect(() => {
       async function verify() {
         try {
-          const res = await axios.get(`${process.env.baseURL}/user/activate_account/`, {
+          const res = await axios.get(`${'https://givemekz-backend-production.up.railway.app'}/user/activate_account/`, {
             headers: {
               token: token,
             },

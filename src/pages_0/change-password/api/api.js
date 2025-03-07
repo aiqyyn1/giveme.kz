@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 export const changePassApi = createApi({
   reducerPath: 'changePass',
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.baseURL,
+    baseUrl: 'https://givemekz-backend-production.up.railway.app',
   }),
   endpoints: (builder) => ({
     postChangePass: builder.mutation({
