@@ -2,7 +2,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import Cookies from 'js-cookie';
 export const profileApi = createApi({
   reducerPath: 'profile',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://giveme-kz-backend-2.onrender.com/user' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.baseURL,
+  }),
   endpoints: (builder) => ({
     getProfile: builder.query({
       query: () => ({
@@ -17,7 +19,7 @@ export const profileApi = createApi({
       query: (formData) => ({
         url: '/needer_files/upload',
         method: 'POST',
-        body:formData,
+        body: formData,
         headers: {
           Authorization: `Bearer ${Cookies.get('access')}`,
         },
@@ -26,4 +28,4 @@ export const profileApi = createApi({
   }),
 });
 
-export const { useGetProfileQuery, useNeedFilesMutation} = profileApi;
+export const { useGetProfileQuery, useNeedFilesMutation } = profileApi;

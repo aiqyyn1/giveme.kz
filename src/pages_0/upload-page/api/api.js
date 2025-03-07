@@ -1,9 +1,10 @@
-
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 export const createItemApi = createApi({
   reducerPath: 'createItem',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://giveme-kz-backend-2.onrender.com' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.baseURL,
+  }),
   endpoints: (builder) => ({
     createItem: builder.mutation({
       query: (formData) => ({
@@ -18,4 +19,4 @@ export const createItemApi = createApi({
   }),
 });
 
-export const { useCreateItemMutation } = createItemApi
+export const { useCreateItemMutation } = createItemApi;
